@@ -19,11 +19,12 @@ for table_row in survivors_perks_table.findAll('tr')[1:]:
     name_field = row_headers[1]
     description_field = table_row.find('td')
     character_field = row_headers[2]
-    perk['name'] = name_field.a.text
 
+    perk['name'] = name_field.a.text
+    perk['description'] = description_field.find('div', class_='formattedPerkDesc').text
+    perk['character'] = character_field.text.strip().replace('.All', 'General')
     
     survivors_perks_list.append(perk)
 
-print(survivors_perks_list)
 with open('data/teste.json', 'w') as surv_perks_file:
     json.dump(survivors_perks_list, surv_perks_file)
