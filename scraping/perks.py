@@ -1,8 +1,9 @@
 from urllib.request import urlretrieve
 from time import sleep
 import json
+from formating_functions import format_name
 
-def retrieve_perks(table, icons_path, json_path):
+def retrieve_perks(table, icons_path, json_path, project_url):
     perks_list = []
     for table_row in table.findAll('tr')[1:]:
         sleep(0.5)
@@ -14,12 +15,14 @@ def retrieve_perks(table, icons_path, json_path):
         character_field = row_headers[2]
 
         perk['name'] = name_field.a.text
+        formated_perk_name = format_name(perk['name'])
         perk['description'] = description_field.find('div', class_='formattedPerkDesc').text
         perk['character'] = character_field.text.strip().replace('.All', 'General')
+        perk['icon'] = f"{project_url}/{icons_path}/{formated_perk_name}.png"
         print(f"Baixando o icone do perk: {perk['name']}")
         while True:
             try:
-                urlretrieve(icon_field.find('a').get('href'), f'{icons_path}/{perk["name"].replace(":", "")}.png')
+                urlretrieve(icon_field.find('a').get('href'), f'{icons_path}/{formated_perk_name}.png')
                 break
             except:
                 print("Erro ao baixar o icone, tentando novamente...")
@@ -27,5 +30,7 @@ def retrieve_perks(table, icons_path, json_path):
         print("Icone baixado com sucesso")
         perks_list.append(perk)
     
+    print("Salvando informações formatadas em JSON...")
     with open(json_path, 'w') as perks_file:
         json.dump(perks_list, perks_file)
+    print("Informações salvas com sucesso.")
