@@ -1,19 +1,19 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-import json
-from perks import get_perks
+from perks import retrieve_perks
 
+print("Coletando informações dos perks...")
 perks_html = urlopen("https://deadbydaylight.fandom.com/wiki/Perks").read()
 soup = BeautifulSoup(perks_html, 'html.parser')
+print("Informações dos perks coletadas")
 
 perks_tables = soup.findAll('table', class_='wikitable unknownClass')
 survivors_perks_table = perks_tables[0]
 killers_perks_table = perks_tables[1]
 
-survivors_perks_list = get_perks(survivors_perks_table)
-killers_perks_list = get_perks(killers_perks_table)
-
-with open('data/perks/survivor_perks.json', 'w') as surv_perks_file:
-    json.dump(survivors_perks_list, surv_perks_file)
-with open('data/perks/killer_perks.json', 'w') as killers_perks_file:
-    json.dump(killers_perks_list, killers_perks_file)
+print("Coletando icones e formatando informações de perks de sobreviventes...")
+retrieve_perks(survivors_perks_table, 'data/perks/survivors_icons', 'data/perks/survivor_perks.json')
+print("Coleta de perks de sobreviventes realizada com sucesso.")
+print("Coletando icones e formatando informações de perks de assassinos...")
+retrieve_perks(killers_perks_table, 'data/perks/killer_icons', 'data/perks/killer_perks.json')
+print("Coleta de perks de assassinos realizada com sucesso.")
