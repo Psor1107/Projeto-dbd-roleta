@@ -30,7 +30,7 @@ function select_page(selected_page_name) {
 }
 
 function select_button(btn) {
-    if (btn.className.indexOf("active") != -1) {
+    if (btn.className.indexOf("active") == -1) {
         btn.className += ' active'
     }
 }
