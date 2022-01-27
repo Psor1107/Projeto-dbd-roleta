@@ -1,35 +1,51 @@
 
-function create_perk_button(perk_json, page) {
-    let button = document.createElement('button')
-    button.type = 'button'
-    button.dataset.bsToggle = "tooltip"
-    button.dataset.bsPlacement = "top"
-    button.title = perk_json['description']
-    new bootstrap.Tooltip(button)
-
-    let img_perk = document.createElement('img')
-    img_perk.src = perk_json['icon']
-
-    button.appendChild(img_perk)
-    page.appendChild(button)
+function select_perk_button(button) {
+    button.selected = true
+    button.style.background = "fixed"
+    button.style.backgroundColor = "black"
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    console.log(tooltipTriggerList[0])
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
+function deselect_perk_button(button) {
+    button.selected = false
+    button.style.background = "none"
+}
+
+function create_perk_button(perk_json, page) {
+    let button_box = document.createElement('div')
+    button_box.className = 'col'
+
+    let button = document.createElement('button')
+    button.className = 'btn-perk-sm'
+    select_perk_button(button)
+    button.addEventListener('click', (event) => {
+        let btn = event.target.parentElement
+        if (btn.selected) {
+            deselect_perk_button(btn)
+        } else {
+            select_perk_button(btn)
+        }
     })
-    create_perk_button()
-})
+    
+    let perk_img = document.createElement('img')
+    perk_img.className = 'img-fluid'
+    perk_img.dataset.bsToggle = "tooltip"
+    perk_img.dataset.bsPlacement = "top"
+    perk_img.title = perk_json['description']
+    perk_img.src = perk_json['icon']
+    perk_img.draggable = false
+    new bootstrap.Tooltip(perk_img)
+    
+    button_box.appendChild(button)
+    button.appendChild(perk_img)
+    page.appendChild(button_box)
+}
 
 
 fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/perks/killer_perks.json")
 .then((response) => response.json())
 .then(perks => {
-    let killer_page = document.getElementById("killer_roulette-page")
+    let killer_page = document.getElementById("modal-killer-body")
     for (let perk_json of perks) {
-        console.log(perk_json)
         create_perk_button(perk_json, killer_page)
     }
 })
