@@ -1,13 +1,12 @@
 
 function select_perk_button(button) {
     button.selected = true
-    button.style.background = "fixed"
-    button.style.backgroundColor = "black"
+    button.className = button.className.replace(" btn-perk-desabled", " btn-perk-enabled")
 }
 
 function deselect_perk_button(button) {
     button.selected = false
-    button.style.background = "none"
+    button.className = button.className.replace(" btn-perk-enabled", " btn-perk-desabled")
 }
 
 function create_perk_button(perk_json, page) {
@@ -15,7 +14,7 @@ function create_perk_button(perk_json, page) {
     button_box.className = 'col'
 
     let button = document.createElement('button')
-    button.className = 'btn-perk-sm'
+    button.className = 'bg-dark btn-perk-sm btn-perk-enabled'
     select_perk_button(button)
     button.addEventListener('click', (event) => {
         let btn = event.target.parentElement
