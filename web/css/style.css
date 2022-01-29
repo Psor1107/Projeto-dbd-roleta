@@ -7,7 +7,7 @@ img {
     -ms-user-select: none;
  }
 
-.btn-perk-sm {
+.btn-perk {
     cursor: pointer;
 
 	color: inherit;
@@ -20,12 +20,17 @@ img {
     background-repeat:no-repeat;
     background-size:contain;
     background-position:center;
+    background-color: white;
+}
+
+.btn-perk-roulette {
+    background-image: url("../imgs/perk-background2.png");
 }
 
 .btn-perk-enabled {
     background-image: url("../imgs/perk-enabled.png");
 }
 
-.btn-perk-sm:hover {
+.btn-perk-hover:hover {
     background-image: url("../imgs/perk-hover.png");
 }
