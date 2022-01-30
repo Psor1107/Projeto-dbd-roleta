@@ -1,11 +1,24 @@
 
+:root {
+    --cor-bg-geral: rgb(20,20,20);
+}
+
 img {  
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
- }
+}
+
+body {
+    padding-top: 60px;
+    background-color: var(--cor-bg-geral);
+}
+
+.page {
+    margin-top: 25px;
+}
 
 .btn-perk {
     cursor: pointer;
@@ -20,7 +33,7 @@ img {
     background-repeat:no-repeat;
     background-size:contain;
     background-position:center;
-    background-color: white;
+    background-color: var(--cor-bg-geral);
 }
 
 .btn-perk-roulette {
@@ -33,4 +46,10 @@ img {
 
 .btn-perk-hover:hover {
     background-image: url("../imgs/perk-hover.png");
+}
+
+.btns-container-light {
+    border-radius: 5px;
+    border: 5px solid black;
+    background-color: rgb(130, 130, 130);
 }
