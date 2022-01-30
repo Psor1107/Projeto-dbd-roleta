@@ -57,10 +57,16 @@
                 
             </div>
 
-            <div class='btns-container-light row row-cols-1 row-cols-md-2 row-cols-xl-3 p-3 mt-5 gy-2 pb-4'>
+            <div class='btns-container-light row row-cols-1 row-cols-md-2 row-cols-xl-3 p-3 gy-2 pb-4'>
                 <div class='col d-grid'>
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-killer">
                         Configurar perks killers <i class="bi bi-gear-fill"></i>
+                    </button>
+                </div>
+
+                <div class='col d-grid'>
+                    <button id='btn-roullete-killer-perks' type="button" class="btn btn-dark">
+                        Roulette perks <i class="bi bi-arrow-repeat"></i>
                     </button>
                 </div>
             </div>
@@ -83,8 +89,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button id='btn-select-all-perks-killers' type="button" class="btn btn-secondary">Select all</button>
+                    <button id='btn-deselect-all-perks-killers' type="button" class="btn btn-secondary">Deselect all</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
                 </div>
             </div>
         </div>

@@ -110,4 +110,29 @@ fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/mai
     for (let i = 0; i < 4; i++) {
         roulette_container.appendChild(create_perk_button_roulette())
     }
+
+    document.getElementById('btn-select-all-perks-killers').addEventListener("click", () => {
+        for (let perk_box of killer_modal.children) {
+            let perk_button = perk_box.children[0]
+            if (!perk_button.enabled) {
+                select_perk_button(perk_button)
+            }
+        }
+    })
+
+    document.getElementById('btn-deselect-all-perks-killers').addEventListener("click", () => {
+        for (let perk_box of killer_modal.children) {
+            let perk_button = perk_box.children[0]
+            if (perk_button.enabled) {
+                deselect_perk_button(perk_button)
+            }
+        }
+    })
+
+    document.getElementById('btn-roullete-killer-perks').addEventListener('click', () => {
+        for (let perk_box of roulette_container.children) {
+            let perk_button = perk_box.children[0].children[0]
+            perk_button.click()
+        }
+    })
 })
