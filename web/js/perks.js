@@ -1,22 +1,27 @@
 
-var killer_perks
+var killers_perks
 const available_killers_perks = []
 const enabled_killers_perks = []
 const selected_killers_perks = []
 
-function select_perk_button(perk_button) {
+var survivors_perks
+const available_survivors_perks = []
+const enabled_survivors_perks = []
+const selected_survivors_perks = []
+
+function select_perk_button(perk_button, enabled_perks, available_perks, selected_perks) {
     perk_button.enabled = true
-    enabled_killers_perks.push(perk_button.perk_index)
-    if (selected_killers_perks.indexOf(perk_button.perk_index) == -1) {
-        available_killers_perks.push(perk_button.perk_index)
+    enabled_perks.push(perk_button.perk_index)
+    if (selected_perks.indexOf(perk_button.perk_index) == -1) {
+        available_perks.push(perk_button.perk_index)
     }
     perk_button.className = perk_button.className.replace(" btn-perk-desabled", " btn-perk-enabled")
 }
 
-function deselect_perk_button(perk_button) {
+function deselect_perk_button(perk_button, enabled_perks, available_perks) {
     perk_button.enabled = false
-    removeItem(enabled_killers_perks, perk_button.perk_index)
-    removeItem(available_killers_perks, perk_button.perk_index)
+    removeItem(enabled_perks, perk_button.perk_index)
+    removeItem(available_perks, perk_button.perk_index)
     perk_button.className = perk_button.className.replace(" btn-perk-enabled", " btn-perk-desabled")
 }
 
@@ -32,7 +37,7 @@ function create_perk_icon_with_tooltip(perk_json) {
     return perk_img
 }
 
-function create_perk_button(perk_json, perk_index) {
+function create_perk_button(perk_json, perk_index, enabled_perks, available_perks, selected_perks) {
     let button_box = document.createElement('div')
     button_box.className = 'col'
 
@@ -42,12 +47,12 @@ function create_perk_button(perk_json, perk_index) {
     button.addEventListener('click', (event) => {
         let btn = event.target.parentElement
         if (btn.enabled) {
-            deselect_perk_button(btn)
+            deselect_perk_button(btn, enabled_perks, available_perks)
         } else {
-            select_perk_button(btn)
+            select_perk_button(btn, enabled_perks, available_perks, selected_perks)
         }
     })
-    select_perk_button(button)
+    select_perk_button(button, enabled_perks, available_perks, selected_perks)
     
     let perk_img = create_perk_icon_with_tooltip(perk_json)
     
@@ -57,7 +62,7 @@ function create_perk_button(perk_json, perk_index) {
 }
 
 
-function create_perk_button_roulette() {
+function create_perk_button_roulette(perks) {
     let perk_box = document.createElement('div')
     perk_box.className = 'col'
 
@@ -71,7 +76,7 @@ function create_perk_button_roulette() {
         }
         let btn_roulette = event.target.parentElement
         let selected_perk_index = random_item(available_killers_perks)
-        let selected_perk_json = killer_perks[selected_perk_index]
+        let selected_perk_json = perks[selected_perk_index]
         if (btn_roulette.children[0].tooltip)
             btn_roulette.children[0].tooltip.dispose()
         btn_roulette.innerHTML = ''
@@ -100,22 +105,22 @@ function create_perk_button_roulette() {
 fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/perks/killer_perks.json")
 .then((response) => response.json())
 .then(perks => {
-    killer_perks = perks
-    let killer_modal = document.getElementById("modal-killer-body")
+    killers_perks = perks
+    let killer_modal = document.getElementById("modal-perks-killers-body")
     for (let i = 0; i < perks.length; i++) {
-        killer_modal.appendChild(create_perk_button(perks[i], i))
+        killer_modal.appendChild(create_perk_button(perks[i], i, enabled_killers_perks, available_killers_perks, selected_killers_perks))
     }
 
-    let roulette_container = document.getElementById("killer-perks-roulette")
+    let roulette_container = document.getElementById("killers-perks-roulette")
     for (let i = 0; i < 4; i++) {
-        roulette_container.appendChild(create_perk_button_roulette())
+        roulette_container.appendChild(create_perk_button_roulette(killers_perks))
     }
 
     document.getElementById('btn-select-all-perks-killers').addEventListener("click", () => {
         for (let perk_box of killer_modal.children) {
             let perk_button = perk_box.children[0]
             if (!perk_button.enabled) {
-                select_perk_button(perk_button)
+                select_perk_button(perk_button, enabled_killers_perks, available_killers_perks, selected_killers_perks)
             }
         }
     })
@@ -124,12 +129,53 @@ fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/mai
         for (let perk_box of killer_modal.children) {
             let perk_button = perk_box.children[0]
             if (perk_button.enabled) {
-                deselect_perk_button(perk_button)
+                deselect_perk_button(perk_button, enabled_killers_perks, available_killers_perks)
             }
         }
     })
 
-    document.getElementById('btn-roullete-killer-perks').addEventListener('click', () => {
+    document.getElementById('btn-roullete-killers-perks').addEventListener('click', () => {
+        for (let perk_box of roulette_container.children) {
+            let perk_button = perk_box.children[0].children[0]
+            perk_button.click()
+        }
+    })
+})
+
+
+fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/perks/survivor_perks.json")
+.then((response) => response.json())
+.then(perks => {
+    survivors_perks = perks
+    let survivors_modal = document.getElementById("modal-perks-survivors-body")
+    for (let i = 0; i < perks.length; i++) {
+        survivors_modal.appendChild(create_perk_button(perks[i], i, enabled_survivors_perks, available_survivors_perks, selected_survivors_perks))
+    }
+
+    let roulette_container = document.getElementById("survivors-perks-roulette")
+    for (let i = 0; i < 4; i++) {
+        roulette_container.appendChild(create_perk_button_roulette(survivors_perks))
+    }
+
+    document.getElementById('btn-select-all-perks-survivors').addEventListener("click", () => {
+        for (let perk_box of survivors_modal.children) {
+            let perk_button = perk_box.children[0]
+            if (!perk_button.enabled) {
+                select_perk_button(perk_button, enabled_survivors_perks, available_survivors_perks, selected_survivors_perks)
+            }
+        }
+    })
+
+    document.getElementById('btn-deselect-all-perks-survivors').addEventListener("click", () => {
+        for (let perk_box of survivors_modal.children) {
+            let perk_button = perk_box.children[0]
+            if (perk_button.enabled) {
+                deselect_perk_button(perk_button, enabled_survivors_perks, available_survivors_perks)
+            }
+        }
+    })
+
+    document.getElementById('btn-roullete-survivors-perks').addEventListener('click', () => {
         for (let perk_box of roulette_container.children) {
             let perk_button = perk_box.children[0].children[0]
             perk_button.click()
