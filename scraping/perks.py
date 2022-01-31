@@ -1,4 +1,4 @@
-from get_image import get_image
+from general_functions import get_image, save_json
 import json
 from formating_functions import format_name
 
@@ -25,7 +25,4 @@ def retrieve_perks(table, icons_path, json_path, project_url):
         print("Icone baixado com sucesso")
         perks_list.append(perk)
     
-    print("Salvando informações formatadas em JSON...")
-    with open(json_path, 'w') as perks_file:
-        json.dump(perks_list, perks_file)
-    print("Informações salvas com sucesso.")
+    save_json(json_path, perks_list)
