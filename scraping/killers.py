@@ -1,6 +1,7 @@
 from general_functions import get_image
 from formating_functions import format_name
 import json
+from surv_and_killers import get_overview
 
 def get_killer_info(killer_html, icons_path, project_url):
     killer = {}
@@ -30,11 +31,7 @@ def get_killer_info(killer_html, icons_path, project_url):
             elif 'height' in row_title:
                 killer['height'] = row_value_object.text.strip()
     
-    killer['overview'] = ''
-    killer_overview_object = killer_html.find("span", id='Overview').findNext('p')
-    while 'difficulty rating' not in killer_overview_object.text.lower():
-        killer['overview'] += killer_overview_object.text.strip() + "\n"
-        killer_overview_object = killer_overview_object.findNext('p')
+    killer['overview'] = get_overview(killer_html)
     return killer
 
 def save_killers_info(json_path, killers):
