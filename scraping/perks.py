@@ -1,12 +1,11 @@
-from urllib.request import urlretrieve
-from time import sleep
+from get_image import get_image
 import json
 from formating_functions import format_name
+
 
 def retrieve_perks(table, icons_path, json_path, project_url):
     perks_list = []
     for table_row in table.findAll('tr')[1:]:
-        sleep(0.5)
         perk = {}
         row_headers = table_row.findAll('th')
         icon_field = row_headers[0]
@@ -20,13 +19,9 @@ def retrieve_perks(table, icons_path, json_path, project_url):
         perk['character'] = character_field.text.strip().replace('.All', 'General')
         perk['icon'] = f"{project_url}/{icons_path}/{formated_perk_name}.png"
         print(f"Baixando o icone do perk: {perk['name']}")
-        while True:
-            try:
-                urlretrieve(icon_field.find('a').get('href'), f'{icons_path}/{formated_perk_name}.png')
-                break
-            except:
-                print("Erro ao baixar o icone, tentando novamente...")
-                sleep(0.5)
+        get_image(icon_field.find('a').get('href'),
+                  f'{icons_path}/{formated_perk_name}.png',
+                  "Erro ao baixar o icone, tentando novamente...")
         print("Icone baixado com sucesso")
         perks_list.append(perk)
     

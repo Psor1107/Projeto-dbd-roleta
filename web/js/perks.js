@@ -95,7 +95,7 @@ function create_perk_button_roulette(perks) {
 
     let img = document.createElement('img')
     img.className = 'img-fluid'
-    img.src = 'imgs/perk-background2.png'
+    img.src = 'imgs/perk-background.png'
 
     button.appendChild(img)
     perk_box.appendChild(button)
