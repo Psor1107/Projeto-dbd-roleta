@@ -1,6 +1,5 @@
 from general_functions import get_image
 from formating_functions import format_name
-import json
 from surv_and_killers import get_overview
 
 def get_killer_info(killer_html, icons_path, project_url):
@@ -33,9 +32,3 @@ def get_killer_info(killer_html, icons_path, project_url):
     
     killer['overview'] = get_overview(killer_html)
     return killer
-
-def save_killers_info(json_path, killers):
-    print("Salvando informações formatadas em JSON...")
-    with open(json_path, 'w') as perks_file:
-        json.dump(killers, perks_file)
-    print("Informações salvas com sucesso.")
