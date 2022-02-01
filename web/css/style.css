@@ -36,22 +36,6 @@ body {
     background-color: var(--cor-bg-geral);
 }
 
-.btn-perk {
-    cursor: pointer;
-
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-
-    background-repeat:no-repeat;
-    background-size:contain;
-    background-position:center;
-    background-color: var(--cor-bg-geral);
-}
-
 .btn-perk-roulette {
     background-image: url("../imgs/perk-background.png");
 }
@@ -65,8 +49,16 @@ body {
 }
 
 
-.btn-character {
+.btn-character-roulette {
     background-image: url("../imgs/character-background.png");
+}
+
+.btn-character-enabled {
+    border: solid white 2px;
+}
+
+.btn-character-hover:hover {
+    border: solid white 1px;
 }
 
 .btns-container-light {

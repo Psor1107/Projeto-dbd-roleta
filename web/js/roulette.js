@@ -1,15 +1,16 @@
 
 
 function create_icon_with_tooltip(tooltip_description, icon_src) {
-    let perk_img = document.createElement('img')
-    perk_img.className = 'img-fluid'
-    perk_img.dataset.bsToggle = "tooltip"
-    perk_img.dataset.bsPlacement = "top"
-    perk_img.title = tooltip_description
-    perk_img.src = icon_src
-    perk_img.draggable = false
-    perk_img.tooltip = new bootstrap.Tooltip(perk_img)
-    return perk_img
+    let icon = document.createElement('img')
+    icon.className = 'img-fluid'
+    icon.dataset.bsToggle = "tooltip"
+    icon.dataset.bsPlacement = "top"
+    icon.dataset.bsHtml = "true"
+    icon.title = tooltip_description
+    icon.src = icon_src
+    icon.draggable = false
+    icon.tooltip = new bootstrap.Tooltip(icon)
+    return icon
 }
 
 function select_modal_btn(modal_btn, enabled_list, available_list, selected_list, btn_class) {
@@ -56,12 +57,8 @@ function create_modal_selection_button(element_index, element_info_json, enabled
 
 
 function create_roulette_button(json_info_list, create_icon, enabled_list, available_list, selected_list, btn_class, placeholder_icon_src) {
-    let roulette_box = document.createElement('div')
-    roulette_box.className = 'col'
-
     let button = document.createElement('button')
     button.className = `btn-selection-modal ${btn_class}-roulette`
-    roulette_box.appendChild(button)
     button.addEventListener('click', (event) => {
         if (available_list.length == 0) {
             return
@@ -71,8 +68,9 @@ function create_roulette_button(json_info_list, create_icon, enabled_list, avail
         let selected_json = json_info_list[selected_index]
         if (btn_roulette.children[0].tooltip)
             btn_roulette.children[0].tooltip.dispose()
-        btn_roulette.innerHTML = ''
+        
         btn_roulette.appendChild(create_icon(selected_json))
+        btn_roulette.children[0].remove()
 
         if (btn_roulette.previous_index !== undefined) {
             if (enabled_list.indexOf(btn_roulette.previous_index) != -1)
@@ -90,8 +88,7 @@ function create_roulette_button(json_info_list, create_icon, enabled_list, avail
     img.src = placeholder_icon_src
 
     button.appendChild(img)
-    roulette_box.appendChild(button)
-    return roulette_box
+    return button
 }
 
 function select_all_modal_btn(modal, enabled_list, available_list, selected_list, btn_class) {

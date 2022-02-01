@@ -57,7 +57,7 @@
 
             <div class='btns-container-light row row-cols-1 row-cols-md-2 row-cols-xl-3 p-3 gy-2 pb-4'>
                 <div class='col d-grid'>
-                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-perks-survivors">
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-survivors-perks">
                         Configurar perks survivors <i class="bi bi-gear-fill"></i>
                     </button>
                 </div>
@@ -75,10 +75,8 @@
         <div class='container-lg'>
             <div id='killer-roulette' class='container-fluid'>
                 <div class='row justify-content-center mb-5'>
-                    <div class='col-6'>
-                        <button class='btn-perk btn-character'>
-                            <img class='img-fluid' src='imgs/character-background.png'>
-                        </button>
+                    <div id='killers-characters-roulette' class='col-6'>
+                        
                     </div>
                 </div>
 
@@ -89,38 +87,45 @@
 
             <div class='btns-container-light row row-cols-1 row-cols-md-2 row-cols-xl-3 p-3 gy-2 pb-4'>
                 <div class='col d-grid'>
-                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-perks-killers">
+                    <button id='btn-roullete-killers-perks' type="button" class="btn btn-dark">
+                        Roulette perks <i class="bi bi-arrow-repeat"></i>
+                    </button>
+                </div>
+
+                <div class='col d-grid'>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-killers-perks">
                         Configurar perks killers <i class="bi bi-gear-fill"></i>
                     </button>
                 </div>
 
                 <div class='col d-grid'>
-                    <button id='btn-roullete-killers-perks' type="button" class="btn btn-dark">
-                        Roulette perks <i class="bi bi-arrow-repeat"></i>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-killers-characters">
+                        Configurar killer characters <i class="bi bi-gear-fill"></i>
                     </button>
                 </div>
+
             </div>
         </div>
     </div>
 
     <!-- Modal survivors perks -->
-    <div class="modal fade" id="modal-perks-survivors" tabindex="-1" aria-labelledby="label-modal-perks-survivors" aria-hidden="true">
+    <div class="modal fade" id="modal-survivors-perks" tabindex="-1" aria-labelledby="label-modal-survivors-perks" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="label-modal-perks-survivors">Configurar survivors perks</h5>
+                    <h5 class="modal-title" id="label-modal-survivors-perks">Configurar survivors perks</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body bg-dark">
                     <div class='container-fluid'>
-                        <div id='modal-perks-survivors-body' class='row row-cols-3 row-cols-md-4 row-cols-lg-6 gy-4'>
+                        <div id='modal-survivors-perks-body' class='row row-cols-3 row-cols-md-4 row-cols-lg-6 gy-4'>
 
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id='btn-select-all-perks-survivors' type="button" class="btn btn-secondary">Select all</button>
-                    <button id='btn-diselect-all-perks-survivors' type="button" class="btn btn-secondary">Deselect all</button>
+                    <button id='btn-select-all-survivors-perks' type="button" class="btn btn-secondary">Select all</button>
+                    <button id='btn-diselect-all-survivors-perks' type="button" class="btn btn-secondary">Deselect all</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
                 </div>
             </div>
@@ -128,23 +133,47 @@
     </div>
   
     <!-- Modal perks killers -->
-    <div class="modal fade" id="modal-perks-killers" tabindex="-1" aria-labelledby="label-modal-perks-killers" aria-hidden="true">
+    <div class="modal fade" id="modal-killers-perks" tabindex="-1" aria-labelledby="label-modal-killers-perks" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="label-modal-perks-killers">Configurar killers perks</h5>
+                    <h5 class="modal-title" id="label-modal-killers-perks">Configurar killers perks</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body bg-dark">
                     <div class='container-fluid'>
-                        <div id='modal-perks-killers-body' class='row row-cols-3 row-cols-md-4 row-cols-lg-6 gy-4'>
+                        <div id='modal-killers-perks-body' class='row row-cols-3 row-cols-md-4 row-cols-lg-6 gy-4'>
 
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id='btn-select-all-perks-killers' type="button" class="btn btn-secondary">Select all</button>
-                    <button id='btn-diselect-all-perks-killers' type="button" class="btn btn-secondary">Deselect all</button>
+                    <button id='btn-select-all-killers-perks' type="button" class="btn btn-secondary">Select all</button>
+                    <button id='btn-diselect-all-killers-perks' type="button" class="btn btn-secondary">Deselect all</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal killers characters -->
+    <div class="modal fade" id="modal-killers-characters" tabindex="-1" aria-labelledby="label-modal-killers-characters" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="label-modal-killers-characters">Configurar killers perks</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <div class='container-fluid'>
+                        <div id='modal-killers-characters-body' class='row row-cols-3 row-cols-md-4 row-cols-lg-6 gy-4'>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id='btn-select-all-killers-characters' type="button" class="btn btn-secondary">Select all</button>
+                    <button id='btn-diselect-all-killers-characters' type="button" class="btn btn-secondary">Deselect all</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
                 </div>
             </div>
