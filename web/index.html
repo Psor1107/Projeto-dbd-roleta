@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link href='css/style.css' rel='stylesheet'>
     <script src='js/functions.js'></script>
+    <script src='js/roulette.js'></script>
+    <script src='js/characters.js'></script>
     <script src='js/perks.js'></script>
     <script src='js/pages.js'></script>
     <title>Roleta DBD</title>
@@ -71,8 +73,18 @@
 
     <div class='page' id='killers_roulette-page'>
         <div class='container-lg'>
-            <div id='killers-perks-roulette' class='row justify-content-center row-cols-2 row-cols-sm-4 row-cols-xl-6 gy-3'>
-                
+            <div id='killer-roulette' class='container-fluid'>
+                <div class='row justify-content-center mb-5'>
+                    <div class='col-6'>
+                        <button class='btn-perk btn-character'>
+                            <img class='img-fluid' src='imgs/character-background.png'>
+                        </button>
+                    </div>
+                </div>
+
+                <div id='killers-perks-roulette' class='row justify-content-center row-cols-2 row-cols-sm-4 row-cols-xl-6 gy-3'>
+
+                </div>
             </div>
 
             <div class='btns-container-light row row-cols-1 row-cols-md-2 row-cols-xl-3 p-3 gy-2 pb-4'>
@@ -108,7 +120,7 @@
                 </div>
                 <div class="modal-footer">
                     <button id='btn-select-all-perks-survivors' type="button" class="btn btn-secondary">Select all</button>
-                    <button id='btn-deselect-all-perks-survivors' type="button" class="btn btn-secondary">Deselect all</button>
+                    <button id='btn-diselect-all-perks-survivors' type="button" class="btn btn-secondary">Deselect all</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
                 </div>
             </div>
@@ -132,7 +144,7 @@
                 </div>
                 <div class="modal-footer">
                     <button id='btn-select-all-perks-killers' type="button" class="btn btn-secondary">Select all</button>
-                    <button id='btn-deselect-all-perks-killers' type="button" class="btn btn-secondary">Deselect all</button>
+                    <button id='btn-diselect-all-perks-killers' type="button" class="btn btn-secondary">Deselect all</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
                 </div>
             </div>
