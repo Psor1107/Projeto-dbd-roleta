@@ -51,11 +51,25 @@
 
     <div class='page' id='survivors_roulette-page'>
         <div class='container-lg'>
-            <div id='survivors-perks-roulette' class='row justify-content-center row-cols-2 row-cols-sm-4 row-cols-xl-6 gy-3'>
+            <div id='survivors-roulette' class='container-fluid'>
+                <div class='row justify-content-center mb-5'>
+                    <div id='survivors-characters-roulette' class='col-6'>
+                        
+                    </div>
+                </div>
+
+                <div id='survivors-perks-roulette' class='row justify-content-center row-cols-2 row-cols-sm-4 row-cols-xl-6 gy-3'>
                 
+                </div>
             </div>
 
             <div class='btns-container-light row row-cols-1 row-cols-md-2 row-cols-xl-3 p-3 gy-2 pb-4'>
+                <div class='col d-grid'>
+                    <button id='btn-roullete-survivors-perks' type="button" class="btn btn-dark">
+                        Roulette perks <i class="bi bi-arrow-repeat"></i>
+                    </button>
+                </div>
+
                 <div class='col d-grid'>
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-survivors-perks">
                         Configurar perks survivors <i class="bi bi-gear-fill"></i>
@@ -63,8 +77,8 @@
                 </div>
 
                 <div class='col d-grid'>
-                    <button id='btn-roullete-survivors-perks' type="button" class="btn btn-dark">
-                        Roulette perks <i class="bi bi-arrow-repeat"></i>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-survivors-characters">
+                        Configurar survivors characters <i class="bi bi-gear-fill"></i>
                     </button>
                 </div>
             </div>
@@ -73,7 +87,7 @@
 
     <div class='page' id='killers_roulette-page'>
         <div class='container-lg'>
-            <div id='killer-roulette' class='container-fluid'>
+            <div id='killers-roulette' class='container-fluid'>
                 <div class='row justify-content-center mb-5'>
                     <div id='killers-characters-roulette' class='col-6'>
                         
@@ -174,6 +188,30 @@
                 <div class="modal-footer">
                     <button id='btn-select-all-killers-characters' type="button" class="btn btn-secondary">Select all</button>
                     <button id='btn-diselect-all-killers-characters' type="button" class="btn btn-secondary">Deselect all</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal survivors characters -->
+    <div class="modal fade" id="modal-survivors-characters" tabindex="-1" aria-labelledby="label-modal-survivors-characters" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="label-modal-survivors-characters">Configurar killers perks</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <div class='container-fluid'>
+                        <div id='modal-survivors-characters-body' class='row row-cols-3 row-cols-md-4 row-cols-lg-6 gy-4'>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id='btn-select-all-survivors-characters' type="button" class="btn btn-secondary">Select all</button>
+                    <button id='btn-diselect-all-survivors-characters' type="button" class="btn btn-secondary">Deselect all</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
                 </div>
             </div>

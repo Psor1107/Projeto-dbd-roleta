@@ -15,7 +15,7 @@ const available_killers_characters = []
 const enabled_killers_characters = []
 const selected_killers_characters = []
 
-var survivors_characteres
+var survivors_characters
 const available_survivors_characters = []
 const enabled_survivors_characters = []
 const selected_survivors_characters = []
@@ -39,5 +39,27 @@ fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/mai
 
     document.getElementById('btn-diselect-all-killers-characters').addEventListener('click', () => {
         diselect_all_modal_btn(killer_modal, enabled_killers_characters, available_killers_characters, characters_class)
+    })
+})
+
+
+fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/survivors/survivors.json")
+.then((response) => response.json())
+.then(perks => {
+    survivors_characters = perks
+    let survivor_modal = document.getElementById("modal-survivors-characters-body")
+    for (let i = 0; i < perks.length; i++) {
+        survivor_modal.appendChild(create_modal_selection_button(i, survivors_characters[i], enabled_survivors_characters, available_survivors_characters, selected_survivors_characters, create_survivor_character_icon , characters_class))
+    }
+
+    let roulette_container = document.getElementById("survivors-characters-roulette")
+    roulette_container.appendChild(create_roulette_button(survivors_characters, create_survivor_character_icon, enabled_survivors_characters, available_survivors_characters, selected_survivors_characters, characters_class, characters_placeholder))
+
+    document.getElementById('btn-select-all-survivors-characters').addEventListener("click", () => {
+        select_all_modal_btn(survivor_modal, enabled_survivors_characters, available_survivors_characters, selected_survivors_characters, characters_class)
+    })
+
+    document.getElementById('btn-diselect-all-survivors-characters').addEventListener('click', () => {
+        diselect_all_modal_btn(survivor_modal, enabled_survivors_characters, available_survivors_characters, characters_class)
     })
 })
