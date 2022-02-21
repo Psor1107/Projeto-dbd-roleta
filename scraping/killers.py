@@ -1,3 +1,5 @@
+from audioop import add
+from sqlalchemy import null
 from general_functions import get_image
 from formating_functions import format_name
 from surv_and_killers import get_overview
@@ -32,3 +34,30 @@ def get_killer_info(killer_html, icons_path, project_url):
     
     killer['overview'] = get_overview(killer_html)
     return killer
+
+def get_killers_addons(killer_html, icons_path, project_url):
+    addons = []
+    addons_table = get_addons_table(killer_html)
+    for table_row in addons_table.findAll("tr")[1:]:
+        addon = {}
+        row_headers = table_row.findAll('th')
+        icon_field = row_headers[0]
+        name_field = row_headers[1]
+
+        addon['name'] = name_field.a.text
+        addon['description'] = table_row.find('td').text
+        formated_addon_name = format_name(addon['name'])
+        addon['icon'] = f"{project_url}/{icons_path}/{formated_addon_name}.png"
+        print(f"Coletando icone do add-on {addon['name']}...")
+        get_image(icon_field.find('a').get('href'),
+                 f'{icons_path}/{formated_addon_name}.png',
+                 "Erro ao baixar icone do addon...")
+        print(f"Icone do add-on {addon['name']} coletado com sucesso")
+        addons.append(addon)
+    return addons
+
+
+def get_addons_table(killer_html):
+    for title in killer_html.findAll("span", class_='mw-headline'):
+        if "Add-ons" in title.text:
+            return title.findNext("table")

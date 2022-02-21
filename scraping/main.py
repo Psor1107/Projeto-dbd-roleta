@@ -2,9 +2,10 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from perks import retrieve_perks
 from links import get_links
-from killers import get_killer_info
+from killers import get_killer_info, get_killers_addons
 from survivors import get_survivor_info
 from general_functions import save_json
+
 
 print("Coletando informações dos perks...")
 perks_html = urlopen("https://deadbydaylight.fandom.com/wiki/Perks").read()
@@ -36,7 +37,9 @@ print("Coleta de perks de assassinos realizada com sucesso.")
 
 project_repository = "https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main"
 killers_icons_path = "data/killers/icons"
+killers_addons_icons_path = "data/killer_add-ons/icons"
 killers = []
+killers_addons = {}
 print("Coletando links dos killers...")
 killers_html = urlopen("https://deadbydaylight.fandom.com/wiki/Killers").read()
 soup = BeautifulSoup(killers_html, 'html.parser')
@@ -49,9 +52,15 @@ for link in links:
     soup = BeautifulSoup(killer_html, 'html.parser')
     killer_atual = get_killer_info(soup, killers_icons_path, project_repository)
     killers.append(killer_atual)
+
+    print(f"Coletando os add-ons do {killer_atual['alias']}...")
+    killer_addons = get_killers_addons(soup, killers_addons_icons_path, project_repository)
+    killers_addons[killer_atual['alias']] = killer_addons
+
     print(f"Todas informações do {killer_atual['alias']} coletada com sucesso.")
 
 save_json("data/killers/killers.json", killers)
+save_json("data/killer_add-ons/killers_add-ons.json", killers_addons)
 
 
 survivors_icons_path = "data/survivors/icons"
