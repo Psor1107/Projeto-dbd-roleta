@@ -14,8 +14,6 @@ const enabled_survivors_perks = []
 const selected_survivors_perks = []
 
 
-
-
 fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/perks/killer_perks.json")
 .then((response) => response.json())
 .then(perks => {
@@ -47,6 +45,7 @@ fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/mai
             perk_button.click()
         }
     })
+
 })
 
 fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/perks/survivor_perks.json")

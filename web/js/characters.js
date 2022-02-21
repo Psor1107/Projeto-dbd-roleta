@@ -62,4 +62,6 @@ fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/mai
     document.getElementById('btn-diselect-all-survivors-characters').addEventListener('click', () => {
         diselect_all_modal_btn(survivor_modal, enabled_survivors_characters, available_survivors_characters, characters_class)
     })
+    
+    load_addons()
 })

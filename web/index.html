@@ -10,6 +10,7 @@
     <script src='js/functions.js'></script>
     <script src='js/roulette.js'></script>
     <script src='js/characters.js'></script>
+    <script src="js/killers_addons.js"></script>
     <script src='js/perks.js'></script>
     <script src='js/pages.js'></script>
     <title>Roleta DBD</title>
@@ -118,6 +119,11 @@
                     </button>
                 </div>
 
+                <div class="col d-grid">
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-killers-addons-1">
+                        Configurar add-ons <i class="bi bi-gear-fill"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -218,6 +224,42 @@
         </div>
     </div>
 
+    <!-- Modal seleção de killer dos add-ons -->
+    <div class="modal fade" id="modal-killers-addons-1" aria-hidden="true" aria-labelledby="label-killers-addons-1" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="label-killers-addons-1">Selecione o killer o qual deseja configurar os add-ons</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    COLOCAR OS KILLERS FIXOS AQUI, CADA UM REDIRECIONANDO PARA O MODAL DE ADD-ONS QUE DEVE SER CARREGADO DINAMICAMENTE
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#modal-killers-addons-2" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal seleção dos add-ons -->
+    <div class="modal fade" id="modal-killers-addons-2" aria-hidden="true" aria-labelledby="label-killers-addons-2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="label-killers-addons-2">Configurar killers-addons</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    COLOCAR OS ADD-ONS DO KILLER SELECIONADO DINAMICAMENTE
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
