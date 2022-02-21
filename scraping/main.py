@@ -37,7 +37,7 @@ print("Coleta de perks de assassinos realizada com sucesso.")
 
 project_repository = "https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main"
 killers_icons_path = "data/killers/icons"
-killers_addons_icons_path = "data/killer_add-ons/icons"
+killers_addons_icons_path = "data/killers_add-ons/icons"
 killers = []
 killers_addons = {}
 print("Coletando links dos killers...")
