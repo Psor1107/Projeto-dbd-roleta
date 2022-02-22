@@ -13,7 +13,7 @@ function show_killer_addons(killer_alias) {
     for (let killer_addon_container of addons_modal.children) {
         killer_addon_container.style.display = 'none'
     }
-    document.getElementById(`${killer_alias}-addons_container`).style.display = 'block'
+    document.getElementById(`${killer_alias}-addons_container`).style.display = 'flex'
 }
 
 function create_character_btn(killer_json) {
@@ -51,6 +51,7 @@ async function load_killers_addons() {
     .then(addons => {
         killers_addons = addons
         let killers_addons_modal = document.getElementById('modal-killers-addons-1-body')
+        let addons_modal = document.getElementById('modal-killers-addons-2-body')
         for (let killer_index = 0; killer_index < killers_characters.length; killer_index++) {
             let killer_alias = killers_characters[killer_index]['alias']
             let character_btn = create_character_btn(killers_characters[killer_index])
@@ -67,6 +68,7 @@ async function load_killers_addons() {
                 enabled_killers_addons[killer_alias], available_killers_addons[killer_alias], selected_killers_addons[killer_alias],
                 create_killer_addon_icon, ''))
             }
+            addons_modal.appendChild(addons_container)
         }
     })
 }
