@@ -36,6 +36,7 @@ body {
     background-color: var(--cor-bg-geral);
 }
 
+
 .btn-perk-roulette {
     background-image: url("../imgs/perk-background.png");
 }
@@ -60,6 +61,20 @@ body {
 .btn-character-hover:hover {
     border: solid white 1px;
 }
+
+
+.btn-killer-addon-roulette {
+    background-image: url("../imgs/addon-background.png");
+}
+
+.btn-killer-addon-enabled {
+    border: solid white 2px;
+}
+
+.btn-killer-addon-hover:hover {
+    border: solid white 1px;
+}
+
 
 .btns-container-light {
     border-radius: 5px;

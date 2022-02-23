@@ -56,39 +56,45 @@ function create_modal_selection_button(element_index, element_info_json, enabled
 }
 
 
-function create_roulette_button(json_info_list, create_icon, enabled_list, available_list, selected_list, btn_class, placeholder_icon_src) {
+function create_roulette_button(json_info_list, create_icon, enabled_list, available_list, selected_list, btn_class, placeholder_icon_src, add_update=true) {
     let button = document.createElement('button')
     button.className = `btn-selection-modal ${btn_class}-roulette`
-    button.addEventListener('click', (event) => {
-        if (available_list.length == 0) {
-            return
-        }
-        let btn_roulette = event.target.parentElement
-        let selected_index = random_item(available_list)
-        let selected_json = json_info_list[selected_index]
-        if (btn_roulette.children[0].tooltip)
-            btn_roulette.children[0].tooltip.dispose()
-        
-        btn_roulette.appendChild(create_icon(selected_json))
-        btn_roulette.children[0].remove()
-
-        if (btn_roulette.previous_index !== undefined) {
-            if (enabled_list.indexOf(btn_roulette.previous_index) != -1)
-                available_list.push(btn_roulette.previous_index)
-            removeItem(selected_list, btn_roulette.previous_index)
-        }
-
-        btn_roulette.previous_index = selected_index
-        removeItem(available_list, selected_index)
-        selected_list.push(selected_index)
-    })
-
+    if (add_update) {
+        button.addEventListener('click', (event) => {
+            update_roulette(event, json_info_list, create_icon, enabled_list, available_list, selected_list)
+            console.log("Olá1")
+        })
+    }
     let img = document.createElement('img')
     img.className = 'img-fluid'
     img.src = placeholder_icon_src
 
     button.appendChild(img)
     return button
+}
+
+function update_roulette(event, json_info_list, create_icon, enabled_list, available_list, selected_list) {
+    if (available_list.length == 0) {
+        return
+    }
+    let btn_roulette = event.target.parentElement
+    let selected_index = random_item(available_list)
+    let selected_json = json_info_list[selected_index]
+    if (btn_roulette.children[0].tooltip)
+        btn_roulette.children[0].tooltip.dispose()
+    
+    btn_roulette.appendChild(create_icon(selected_json))
+    btn_roulette.children[0].remove()
+
+    if (btn_roulette.previous_index !== undefined) {
+        if (enabled_list.indexOf(btn_roulette.previous_index) != -1)
+            available_list.push(btn_roulette.previous_index)
+        removeItem(selected_list, btn_roulette.previous_index)
+    }
+
+    btn_roulette.previous_index = selected_index
+    removeItem(available_list, selected_index)
+    selected_list.push(selected_index)
 }
 
 function select_all_modal_btn(modal, enabled_list, available_list, selected_list, btn_class) {
