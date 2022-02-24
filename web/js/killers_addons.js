@@ -49,8 +49,8 @@ function create_killer_addons_container(killer_alias) {
 
 function create_killers_addons_roulette_button(json_info_list, create_icon, enabled_list, available_list, selected_list, btn_class, placeholder_icon_src) {
     let button = create_roulette_button(json_info_list, create_icon, enabled_list, available_list, selected_list, btn_class, placeholder_icon_src, false)
-    button.addEventListener('click', (event) => {
-        update_roulette(event, json_info_list[selected_killer_alias], create_icon, enabled_list[selected_killer_alias], available_list[selected_killer_alias], selected_list[selected_killer_alias])
+    button.addEventListener('click', () => {
+        update_roulette(button, json_info_list[selected_killer_alias], create_icon, enabled_list[selected_killer_alias], available_list[selected_killer_alias], selected_list[selected_killer_alias])
     })
     return button
 }

@@ -60,8 +60,8 @@ function create_roulette_button(json_info_list, create_icon, enabled_list, avail
     let button = document.createElement('button')
     button.className = `btn-selection-modal ${btn_class}-roulette`
     if (add_update) {
-        button.addEventListener('click', (event) => {
-            update_roulette(event, json_info_list, create_icon, enabled_list, available_list, selected_list)
+        button.addEventListener('click', () => {
+            update_roulette(button, json_info_list, create_icon, enabled_list, available_list, selected_list)
             console.log("Olá1")
         })
     }
@@ -73,11 +73,10 @@ function create_roulette_button(json_info_list, create_icon, enabled_list, avail
     return button
 }
 
-function update_roulette(event, json_info_list, create_icon, enabled_list, available_list, selected_list) {
+function update_roulette(btn_roulette, json_info_list, create_icon, enabled_list, available_list, selected_list) {
     if (available_list.length == 0) {
         return
     }
-    let btn_roulette = event.target.parentElement
     let selected_index = random_item(available_list)
     let selected_json = json_info_list[selected_index]
     if (btn_roulette.children[0].tooltip)
