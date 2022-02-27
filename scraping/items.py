@@ -22,9 +22,9 @@ def get_items_info(items_html, icons_path, project_url):
         'Firecrackers', 'Flashlights', 'Keys', 'Maps', 'Med-Kits', 'Toolboxes'
     ]
     for item_name in items_names:
-        item = {}
         row = items_html.find('span', id=item_name).findNext('tr').findNext('tr')
         while True:
+            item = {}
             headers = row.findAll('th')
             if len(headers) != 2:
                 break

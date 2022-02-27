@@ -7,7 +7,6 @@ from survivors import get_survivor_info
 from general_functions import save_json
 from items import get_items_info
 
-
 print("Coletando informações dos perks...")
 perks_html = urlopen("https://deadbydaylight.fandom.com/wiki/Perks").read()
 soup = BeautifulSoup(perks_html, 'html.parser')

@@ -76,6 +76,19 @@ body {
 }
 
 
+.btn-items-roulette {
+    background-image: url("../imgs/addon-background.png");
+}
+
+.btn-items-enabled {
+    border: solid white 2px;
+}
+
+.btn-items-hover:hover {
+    border: solid white 1px;
+}
+
+
 .btns-container-light {
     border-radius: 5px;
     border: 5px solid black;

@@ -9,5 +9,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     load_killers_perks()
     load_survivors_perks()
-    
+    load_items()
 })
