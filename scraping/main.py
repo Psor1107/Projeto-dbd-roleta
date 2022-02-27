@@ -5,6 +5,7 @@ from links import get_links
 from killers import get_killer_info, get_killers_addons
 from survivors import get_survivor_info
 from general_functions import save_json
+from items import get_items_info
 
 
 print("Coletando informações dos perks...")
@@ -60,7 +61,7 @@ for link in links:
     print(f"Todas informações do {killer_atual['alias']} coletada com sucesso.")
 
 save_json("data/killers/killers.json", killers)
-save_json("data/killer_add-ons/killers_add-ons.json", killers_addons)
+save_json("data/killers_add-ons/killers_add-ons.json", killers_addons)
 
 
 survivors_icons_path = "data/survivors/icons"
@@ -80,3 +81,10 @@ for link in links:
     print(f"Todas informações do {survivor_atual['name']} coletada com sucesso.")
 
 save_json("data/survivors/survivors.json", survivors)
+
+
+items_icon_path = "data/items/icons"
+items_html = urlopen("https://deadbydaylight.fandom.com/wiki/Items").read()
+soup = BeautifulSoup(items_html, 'html.parser')
+items = get_items_info(soup, items_icon_path, project_repository)
+save_json("data/items/items.json", items)

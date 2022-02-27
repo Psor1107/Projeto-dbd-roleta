@@ -1,5 +1,3 @@
-from audioop import add
-from sqlalchemy import null
 from general_functions import get_image
 from formating_functions import format_name
 from surv_and_killers import get_overview
