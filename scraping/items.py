@@ -4,14 +4,9 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
 
-def get_items_names():
-    # Só deve retornar os links de itens com add-ons disponiveis
-    return ['Flashlight', 'Key', 'Map', 'Med-Kit', 'Toolbox']
-
-
 def get_items_addons(addons_html, icons_path, project_url):
     items_addons = {}
-    items_names = get_items_names()
+    items_names = ['Flashlight', 'Key', 'Map', 'Med-Kit', 'Toolbox']
     for item_name in items_names:
         item_addons_table = addons_html.find('span', id=item_name).findNext('table', class_='wikitable')
         item_addons = []
@@ -39,10 +34,9 @@ def get_items_addons(addons_html, icons_path, project_url):
 
 def get_items_info(items_html, icons_path, project_url):
     items = []
-    items_names = [
-        'Firecrackers', 'Flashlights', 'Keys', 'Maps', 'Med-Kits', 'Toolboxes'
-    ]
-    for item_name in items_names:
+    items_names = ['Firecrackers', 'Flashlights', 'Keys', 'Maps', 'Med-Kits', 'Toolboxes']
+    items_types = ['Firecracker', 'Flashlight', 'Key', 'Map', 'Med-Kit', 'Toolbox']
+    for item_name, item_type in zip(items_names, items_types):
         row = items_html.find('span', id=item_name).findNext('tr').findNext('tr')
         while True:
             item = {}
@@ -57,6 +51,7 @@ def get_items_info(items_html, icons_path, project_url):
             formated_item_name = format_name(item['name'])
             item['description'] = item_description_object.text
             item['icon'] = f'{project_url}/{icons_path}/{formated_item_name}.png'
+            item['type'] = item_type
             print(f"Coletando icone do item {item['name']}...")
             get_image(item_icon_object.find('a').get('href'),
                       f'{icons_path}/{formated_item_name}.png',
