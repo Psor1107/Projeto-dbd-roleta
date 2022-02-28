@@ -28,7 +28,9 @@ async function load_killers_perks() {
         for (let i = 0; i < 4; i++) {
             let roulette_button_box = document.createElement('div')
             roulette_button_box.className = 'col'
-            roulette_button_box.appendChild(create_roulette_button(killers_perks, create_perk_icon, enabled_killers_perks, available_killers_perks,  selected_killers_perks, perks_class, perks_placeholder))
+            let roulette_btn = create_roulette_button(killers_perks, create_perk_icon, enabled_killers_perks, available_killers_perks,  selected_killers_perks, perks_class, perks_placeholder)
+            killers_roulette_buttons.push(roulette_btn)
+            roulette_button_box.appendChild(roulette_btn)
             roulette_container.appendChild(roulette_button_box)
         }
 
@@ -63,7 +65,9 @@ async function load_survivors_perks() {
         for (let i = 0; i < 4; i++) {
             let roulette_button_box = document.createElement('div')
             roulette_button_box.className = 'col'
-            roulette_button_box.appendChild(create_roulette_button(survivors_perks, create_perk_icon, enabled_survivors_perks, available_survivors_perks, selected_survivors_perks, perks_class, perks_placeholder))
+            let roulette_button = create_roulette_button(survivors_perks, create_perk_icon, enabled_survivors_perks, available_survivors_perks, selected_survivors_perks, perks_class, perks_placeholder)
+            survivors_roulette_buttons.push(roulette_button)
+            roulette_button_box.appendChild(roulette_button)
             roulette_container.appendChild(roulette_button_box)
         }
 

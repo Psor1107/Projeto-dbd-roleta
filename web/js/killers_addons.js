@@ -47,6 +47,8 @@ async function load_killers_addons() {
         let killer_addon_roulette_container = document.getElementById("killers-addons-roulette")
         let killer_addon_roulette_1 = create_killers_addons_roulette_button(killers_addons, create_killer_addon_icon, enabled_killers_addons, available_killers_addons, selected_killers_addons, killer_addon_class, "imgs/addon-background.png")
         let killer_addon_roulette_2 = create_killers_addons_roulette_button(killers_addons, create_killer_addon_icon, enabled_killers_addons, available_killers_addons, selected_killers_addons, killer_addon_class, "imgs/addon-background.png")
+        killers_roulette_buttons.push(killer_addon_roulette_1)
+        killers_roulette_buttons.push(killer_addon_roulette_2)
         killer_addon_roulette_container.appendChild(killer_addon_roulette_1)
         killer_addon_roulette_container.appendChild(killer_addon_roulette_2)
 

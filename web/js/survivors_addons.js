@@ -51,7 +51,9 @@ async function load_survivors_addons() {
 
         let survivor_addons_roulette_container = document.getElementById("survivors-addons-roulette")
         let survivor_addon_roulette_1 = create_survivors_addons_roulette_button(survivors_addons, create_survivor_addon_icon, enabled_survivors_addons, available_survivors_addons, selected_survivors_addons, survivor_addon_class, "imgs/addon-background.png")
-        let survivor_addon_roulette_2 = create_survivors_addons_roulette_button(survivors_addons, create_survivor_addon_icon, enabled_survivors_addons, available_survivors_addons, selected_survivors_addons, survivor_addon_class, "imgs/addon-background.png")
+        let survivor_addon_roulette_2 = create_survivors_addons_roulette_button(survivors_addons, create_survivor_addon_icon, enabled_survivors_addons, available_survivors_addons, selected_survivors_addons, survivor_addon_class, "imgs/addon-background.png")   
+        survivors_roulette_buttons.push(survivor_addon_roulette_1)
+        survivors_roulette_buttons.push(survivor_addon_roulette_2)
         survivor_addons_roulette_container.appendChild(survivor_addon_roulette_1)
         survivor_addons_roulette_container.appendChild(survivor_addon_roulette_2)
 

@@ -33,6 +33,7 @@ async function load_killers_characters() {
 
         let roulette_container = document.getElementById("killers-characters-roulette")
         let killer_roulette_button = create_roulette_button(killers_characters, create_killer_character_icon, enabled_killers_characters, available_killers_characters, selected_killers_characters, characters_class, characters_placeholder)
+        killers_roulette_buttons.push(killer_roulette_button)
         killer_roulette_button.id = 'btn-killer-roulette'
         roulette_container.appendChild(killer_roulette_button)
 
@@ -57,7 +58,9 @@ async function load_survivors_characters() {
         }
 
         let roulette_container = document.getElementById("survivors-characters-roulette")
-        roulette_container.appendChild(create_roulette_button(survivors_characters, create_survivor_character_icon, enabled_survivors_characters, available_survivors_characters, selected_survivors_characters, characters_class, characters_placeholder))
+        let survivor_roulette_button = create_roulette_button(survivors_characters, create_survivor_character_icon, enabled_survivors_characters, available_survivors_characters, selected_survivors_characters, characters_class, characters_placeholder)
+        survivors_roulette_buttons.push(survivor_roulette_button)
+        roulette_container.appendChild(survivor_roulette_button)
 
         document.getElementById('btn-select-all-survivors-characters').addEventListener("click", () => {
             select_all_modal_btn(survivor_modal, enabled_survivors_characters, available_survivors_characters, selected_survivors_characters, characters_class)

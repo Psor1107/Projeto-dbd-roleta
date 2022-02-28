@@ -25,6 +25,7 @@ async function load_items() {
         let roulette_container = document.getElementById("items-roulette")
         let btn_item_roulette = create_roulette_button(items, create_item_icon, enabled_items, available_items, selected_items, items_class, items_placeholder)
         btn_item_roulette.id = 'btn-items-roulette'
+        survivors_roulette_buttons.push(btn_item_roulette)
         roulette_container.appendChild(btn_item_roulette)
 
         document.getElementById('btn-select-all-items').addEventListener("click", () => {
