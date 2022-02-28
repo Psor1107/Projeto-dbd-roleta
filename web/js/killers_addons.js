@@ -9,70 +9,12 @@ const available_killers_addons = {null: []}
 const enabled_killers_addons = {null: []}
 const selected_killers_addons = {null: []}
 
-
-function show_killer_addons(killer_alias) {
-    let addons_modal = document.getElementById("modal-killers-addons-2-body")
-    for (let killer_addon_container of addons_modal.children) {
-        killer_addon_container.style.display = 'none'
-    }
-    document.getElementById(`${killer_alias}-addons_container`).style.display = 'flex'
-}
-
-function create_character_btn(killer_json) {
-    let button_box = document.createElement('div')
-    button_box.className = 'col'
-
-    let icon = create_killer_character_icon(killer_json)
-
-    let button = document.createElement('button')
-    button.className = 'bg-dark btn-selection-modal'
-    button.dataset.bsTarget = "#modal-killers-addons-2"
-    button.dataset.bsToggle = "modal"
-    button.dataset.bsDismiss = "modal"
-    button.killer_target = killer_json['alias']
-    button.addEventListener('click', (event) => {
-        let btn = event.target.parentElement
-        show_killer_addons(btn.killer_target)
-    })
-
-    button.appendChild(icon)
-    button_box.appendChild(button)
-    return button_box
-}
-
-function create_killer_addons_container(killer_alias) {
-    let addons_container = document.createElement('div')
-    addons_container.className = 'row row-cols-3 row-cols-md-4 row-cols-lg-6 gy-4'
-    addons_container.id = `${killer_alias}-addons_container`
-    return addons_container
-}
-
 function create_killers_addons_roulette_button(json_info_list, create_icon, enabled_list, available_list, selected_list, btn_class, placeholder_icon_src) {
     let button = create_roulette_button(json_info_list, create_icon, enabled_list, available_list, selected_list, btn_class, placeholder_icon_src, false)
     button.addEventListener('click', () => {
         update_roulette(button, json_info_list[selected_killer_alias], create_icon, enabled_list[selected_killer_alias], available_list[selected_killer_alias], selected_list[selected_killer_alias])
     })
     return button
-}
-
-function clear_addon_roulette_button(btn_addon, enabled_list, available_list, selected_list, placeholder_icon_src) {
-    if (btn_addon.children[0].tooltip)
-        btn_addon.children[0].tooltip.dispose()
-    btn_addon.children[0].remove()
-
-    if (btn_addon.previous_index !== undefined) {
-        if (enabled_list.indexOf(btn_addon.previous_index) !== -1) {
-            available_list.push(btn_addon.previous_index)
-        }
-        removeItem(selected_list, btn_addon.previous_index)
-    }
-
-    let img = document.createElement('img')
-    img.className = 'img-fluid'
-    img.src = placeholder_icon_src
-    btn_addon.appendChild(img)
-    
-    btn_addon.previous_index = undefined
 }
 
 async function load_killers_addons() {
@@ -84,7 +26,7 @@ async function load_killers_addons() {
         let addons_modal = document.getElementById('modal-killers-addons-2-body')
         for (let killer_index = 0; killer_index < killers_characters.length; killer_index++) {
             let killer_alias = killers_characters[killer_index]['alias']
-            let character_btn = create_character_btn(killers_characters[killer_index])
+            let character_btn = create_addons_option_select_button(killers_characters[killer_index], killer_alias, create_killer_character_icon, 'modal-killers-addons-2')
 
             available_killers_addons[killer_alias] = []
             enabled_killers_addons[killer_alias] = []
@@ -92,7 +34,7 @@ async function load_killers_addons() {
 
             killers_addons_modal.appendChild(character_btn)
 
-            let addons_container = create_killer_addons_container(killer_alias)
+            let addons_container = create_addons_container(killer_alias)
             for (let addon_index = 0; addon_index < addons[killer_alias].length; addon_index++) {
                 addons_container.appendChild(create_modal_selection_button(addon_index, addons[killer_alias][addon_index], 
                 enabled_killers_addons[killer_alias], available_killers_addons[killer_alias], selected_killers_addons[killer_alias],
@@ -109,9 +51,8 @@ async function load_killers_addons() {
         killer_addon_roulette_container.appendChild(killer_addon_roulette_2)
 
         let btn_killer_roulette = document.getElementById('btn-killer-roulette')
-        btn_killer_roulette.addEventListener('click', (event) => {
+        btn_killer_roulette.addEventListener('click', () => {
             let new_killer_alias = killers_characters[btn_killer_roulette.previous_index]['alias']
-            console.log(new_killer_alias)
 
             if (selected_killer_alias !== null) {
                 clear_addon_roulette_button(killer_addon_roulette_1, enabled_killers_addons[selected_killer_alias], available_killers_addons[selected_killer_alias], selected_killers_addons[selected_killer_alias], "imgs/addon-background.png")

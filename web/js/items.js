@@ -23,7 +23,9 @@ async function load_items() {
         }
 
         let roulette_container = document.getElementById("items-roulette")
-        roulette_container.appendChild(create_roulette_button(items, create_item_icon, enabled_items, available_items, selected_items, items_class, items_placeholder))
+        let btn_item_roulette = create_roulette_button(items, create_item_icon, enabled_items, available_items, selected_items, items_class, items_placeholder)
+        btn_item_roulette.id = 'btn-items-roulette'
+        roulette_container.appendChild(btn_item_roulette)
 
         document.getElementById('btn-select-all-items').addEventListener("click", () => {
             select_all_modal_btn(items_modal, enabled_items, available_items, selected_items, items_class)

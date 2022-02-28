@@ -11,6 +11,7 @@
     <script src='js/roulette.js'></script>
     <script src='js/characters.js'></script>
     <script src="js/killers_addons.js"></script>
+    <script src="js/survivors_addons.js"></script>
     <script src='js/perks.js'></script>
     <script src='js/items.js'></script>
     <script src='js/pages.js'></script>
@@ -62,6 +63,9 @@
                     <div id='items-roulette' class='col-6'>
                         
                     </div>
+                    <div id='survivors-addons-roulette' class="col-6 row row-cols-2">
+                        
+                    </div>
                 </div>
 
                 <div id='survivors-perks-roulette' class='row justify-content-center row-cols-2 row-cols-sm-4 row-cols-xl-6 gy-3'>
@@ -91,6 +95,12 @@
                 <div class='col d-grid'>
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-items">
                         Configurar items <i class="bi bi-gear-fill"></i>
+                    </button>
+                </div>
+
+                <div class='col d-grid'>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-survivors-addons-1">
+                        Configurar add-ons <i class="bi bi-gear-fill"></i>
                     </button>
                 </div>
             </div>
@@ -300,6 +310,48 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-bs-target="#modal-killers-addons-1" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal seleção de item dos add-ons -->
+    <div class="modal fade" id="modal-survivors-addons-1" aria-hidden="true" aria-labelledby="label-surv-addons-1" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="label-surv-addons-1">Selecione o item o qual deseja configurar os add-ons</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <div class='container-fluid'>
+                        <div id='modal-survivors-addons-1-body' class='row row-cols-3 row-cols-md-4 row-cols-lg-6 gy-4'>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal seleção dos add-ons -->
+    <div class="modal fade" id="modal-survivors-addons-2" aria-hidden="true" aria-labelledby="label-surv-addons-2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="label-surv-addons-2">Configurar killers-addons</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <div id="modal-survivors-addons-2-body" class='container-fluid'>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#modal-survivors-addons-1" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
                 </div>
             </div>
         </div>

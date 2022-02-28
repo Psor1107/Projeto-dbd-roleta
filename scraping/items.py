@@ -1,7 +1,5 @@
 from formating_functions import format_name
 from general_functions import get_image
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 
 
 def get_items_addons(addons_html, icons_path, project_url):

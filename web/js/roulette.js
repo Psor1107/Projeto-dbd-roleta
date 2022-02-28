@@ -62,7 +62,6 @@ function create_roulette_button(json_info_list, create_icon, enabled_list, avail
     if (add_update) {
         button.addEventListener('click', () => {
             update_roulette(button, json_info_list, create_icon, enabled_list, available_list, selected_list)
-            console.log("Olá1")
         })
     }
     let img = document.createElement('img')
@@ -112,4 +111,61 @@ function diselect_all_modal_btn(modal, enabled_list, available_list, btn_class) 
             diselect_modal_btn(perk_button, enabled_list, available_list, btn_class)
         }
     }
+}
+
+
+function show_addons(alias, addons_modal) {
+    for (let addon_container of addons_modal.children) {
+        addon_container.style.display = 'none'
+    }
+    document.getElementById(`${alias}-addons_container`).style.display = 'flex'
+}
+
+function create_addons_option_select_button(json, addons_target_option, create_icon, addons_modal_id) {
+    let button_box = document.createElement('div')
+    button_box.className = 'col'
+
+    let icon = create_icon(json)
+
+    let button = document.createElement('button')
+    button.className = 'bg-dark btn-selection-modal'
+    button.dataset.bsTarget = `#${addons_modal_id}`
+    button.dataset.bsToggle = "modal"
+    button.dataset.bsDismiss = "modal"
+    button.target_option = addons_target_option
+    button.addEventListener('click', (event) => {
+        let btn = event.target.parentElement
+        show_addons(btn.target_option, document.getElementById(`${addons_modal_id}-body`))
+    })
+
+    button.appendChild(icon)
+    button_box.appendChild(button)
+    return button_box
+}
+
+function create_addons_container(target_option) {
+    let addons_container = document.createElement('div')
+    addons_container.className = 'row row-cols-3 row-cols-md-4 row-cols-lg-6 gy-4'
+    addons_container.id = `${target_option}-addons_container`
+    return addons_container
+}
+
+function clear_addon_roulette_button(btn_addon, enabled_list, available_list, selected_list, placeholder_icon_src) {
+    if (btn_addon.children[0].tooltip)
+        btn_addon.children[0].tooltip.dispose()
+    btn_addon.children[0].remove()
+
+    if (btn_addon.previous_index !== undefined) {
+        if (enabled_list.indexOf(btn_addon.previous_index) !== -1) {
+            available_list.push(btn_addon.previous_index)
+        }
+        removeItem(selected_list, btn_addon.previous_index)
+    }
+
+    let img = document.createElement('img')
+    img.className = 'img-fluid'
+    img.src = placeholder_icon_src
+    btn_addon.appendChild(img)
+    
+    btn_addon.previous_index = undefined
 }
