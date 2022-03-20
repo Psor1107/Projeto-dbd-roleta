@@ -11,6 +11,22 @@ img {
     -ms-user-select: none;
 }
 
+.home-link {
+    color: rgb(11, 149, 241);
+    text-decoration: none;
+}
+
+.home-link:hover {
+    text-decoration: underline;
+    color: rgb(22, 142, 223);
+}
+
+.home-content {
+    color: white;
+    background-color: rgb(10, 10, 10);
+    border: solid rgb(173, 167, 167) 1px;
+}
+
 body {
     padding-top: 60px;
     background-color: var(--cor-bg-geral);
