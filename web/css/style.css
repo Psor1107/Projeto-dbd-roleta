@@ -84,11 +84,11 @@ body {
 }
 
 .btn-killer-addon-enabled {
-    border: solid white 2px;
+    background-image: url("../imgs/addon-hover.png");
 }
 
 .btn-killer-addon-hover:hover {
-    border: solid white 1px;
+    background-image: url("../imgs/addon-hover.png");
 }
 
 
