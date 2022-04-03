@@ -2,7 +2,8 @@
 const killer_addon_class = 'btn-killer-addon'
 var killers_addons
 var create_killer_addon_icon = (json) => {
-    return create_icon_with_tooltip(json['description'], json['icon'])
+    let tooltip_text = `<h2 class='h5'>${json['name']}</h2>`
+    return create_icon_with_tooltip(tooltip_text, json['icon'])
 }
 var selected_killer_alias = null
 const available_killers_addons = {null: []}

@@ -1,7 +1,10 @@
 
 const perks_class = "btn-perk"
 const perks_placeholder = "imgs/perk-background.png"
-var create_perk_icon = (json) => (create_icon_with_tooltip(json['description'], json['icon']))
+var create_perk_icon = (json) => {
+    let tooltip_text = `<h2 class='h5'>${json['name']}</h2>`
+    return (create_icon_with_tooltip(tooltip_text, json['icon']))
+}
 
 var killers_perks
 const available_killers_perks = []

@@ -2,7 +2,8 @@
 const survivor_addon_class = 'btn-survivor-addon'
 var survivors_addons
 var create_survivor_addon_icon = (json) => {
-    return create_icon_with_tooltip(json['description'], json['icon'])
+    let tooltip_text = `<h2 class='h5'>${json['name']}</h2>`
+    return create_icon_with_tooltip(tooltip_text, json['icon'])
 }
 var selected_item_type = null
 const available_survivors_addons = {null: []}

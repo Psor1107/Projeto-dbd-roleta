@@ -2,7 +2,7 @@
 const items_class = "btn-items"
 const items_placeholder = "imgs/item-background.png"
 var create_item_icon = (json) => {
-    let tooltip_text = `<h2 class='h5' style='text-align: center;'>${json['name']}</h2><p>${json['description']}</p>`
+    let tooltip_text = `<h2 class='h5'>${json['name']}</h2>`
     return create_icon_with_tooltip(tooltip_text, json['icon'])
 }
 

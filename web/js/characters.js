@@ -2,11 +2,11 @@
 const characters_class = "btn-character"
 const characters_placeholder = "imgs/character-background.png"
 var create_killer_character_icon = (json) => {
-    let tooltip_text = `<h2 class='h5' style='text-align: center;'>${json['alias']}</h2><p>${json['overview']}</p>`
+    let tooltip_text = `<h2 class='h5'>${json['alias']}</h2>`
     return create_icon_with_tooltip(tooltip_text, json['icon'])
 }
 var create_survivor_character_icon = (json) => {
-    let tooltip_text = `<h2 class='h5' style='text-align: center;'>${json['name']}</h2><p>${json['overview']}</p>`
+    let tooltip_text = `<h2 class='h5'>${json['name']}</h2>`
     return create_icon_with_tooltip(tooltip_text, json['icon'])
 }
 

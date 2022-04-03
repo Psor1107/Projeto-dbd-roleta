@@ -75,7 +75,7 @@ body {
 }
 
 .btn-character-hover:hover {
-    border: solid white 1px;
+    border: solid red 2px;
 }
 
 
@@ -84,11 +84,11 @@ body {
 }
 
 .btn-killer-addon-enabled {
-    background-image: url("../imgs/addon-hover.png");
+    border: solid white 2px;
 }
 
 .btn-killer-addon-hover:hover {
-    background-image: url("../imgs/addon-hover.png");
+    border: solid red 2px;
 }
 
 
@@ -101,7 +101,7 @@ body {
 }
 
 .btn-items-hover:hover {
-    border: solid white 1px;
+    border: solid red 2px;
 }
 
 
