@@ -7,13 +7,14 @@ from survivors import get_survivor_info
 from general_functions import save_json
 from items import get_items_info, get_items_addons
 
+project_repository = "https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main"
 
 print("Coletando informações dos perks...")
 perks_html = urlopen("https://deadbydaylight.fandom.com/wiki/Perks").read()
 soup = BeautifulSoup(perks_html, 'html.parser')
 print("Informações dos perks coletadas")
 
-perks_tables = soup.findAll('table', class_='wikitable unknownClass')
+perks_tables = soup.findAll('table', class_='wikitable sortable')
 survivors_perks_table = perks_tables[0]
 killers_perks_table = perks_tables[1]
 
@@ -62,7 +63,6 @@ for link in links:
 
 save_json("data/killers/killers.json", killers)
 save_json("data/killers_add-ons/killers_add-ons.json", killers_addons)
-
 
 survivors_icons_path = "data/survivors/icons"
 survivors = []
