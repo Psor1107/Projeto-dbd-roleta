@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "outDir": "js2",
+        "strictNullChecks": true,
+        "target": "ES6",
+        "noEmitOnError": true,
+        "removeComments": true,
+        "noImplicitAny": true
+    },
+    "include": ["ts/**/*"],
+    
+}
