@@ -7,6 +7,9 @@ export default class RouletteButton {
         this.button = this.createButton();
         HTMLParent.appendChild(this.button);
     }
+    click() {
+        this.button.click();
+    }
     clearButton() {
         this.button.children[0].remove();
         let img = document.createElement('img');

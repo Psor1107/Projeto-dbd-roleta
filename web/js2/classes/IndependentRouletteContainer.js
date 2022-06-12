@@ -5,7 +5,7 @@ export default class IndependentRouletteContainer {
         this.objects = objects;
         this.availableObjects = [...objects];
         this.enabledObjects = [...objects];
-        this.selectedObjects = [...objects];
+        this.selectedObjects = [];
     }
     throwErrorIfObjectDoesNotExistsInContainer(object) {
         if (!this.objects.includes(object)) {
@@ -32,7 +32,7 @@ export default class IndependentRouletteContainer {
     }
     deselect(object) {
         this.throwErrorIfObjectDoesNotExistsInContainer(object);
-        removeItem(this.availableObjects, object);
+        removeItem(this.selectedObjects, object);
         if (this.isEnabled(object)) {
             this.availableObjects.push(object);
         }

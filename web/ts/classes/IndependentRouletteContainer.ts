@@ -13,7 +13,7 @@ implements RouletteContainer<T> {
         this.objects = objects
         this.availableObjects = [...objects]
         this.enabledObjects = [...objects]
-        this.selectedObjects = [...objects]
+        this.selectedObjects = []
     }
 
     private throwErrorIfObjectDoesNotExistsInContainer(object: T): void {
@@ -47,7 +47,7 @@ implements RouletteContainer<T> {
     public deselect(object: T): void {
         this.throwErrorIfObjectDoesNotExistsInContainer(object)
 
-        removeItem(this.availableObjects, object)
+        removeItem(this.selectedObjects, object)
         if (this.isEnabled(object)) {
             this.availableObjects.push(object)
         }

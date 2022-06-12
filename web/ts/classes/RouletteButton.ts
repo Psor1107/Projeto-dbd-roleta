@@ -17,6 +17,10 @@ export default class RouletteButton<T> {
         HTMLParent.appendChild(this.button)
     }
 
+    public click() {
+        this.button.click()
+    }
+
     public clearButton() {
         this.button.children[0].remove()
 

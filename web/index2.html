@@ -13,6 +13,9 @@
         // Então, fiz o reload dos tooltips pelo javascript mesmo...
         document.addEventListener('DOMContentLoaded', () => {
             document.addEventListener('click', () => {
+                document.querySelectorAll('.tooltip').forEach((item) => {
+                    item.remove()
+                })
                 const tooltipTriggerList = document.querySelectorAll('.roulette-tooltip')
                 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
             })
