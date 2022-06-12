@@ -1,5 +1,11 @@
 
 
+function clearTooltips() {
+    document.querySelectorAll('.tooltip').forEach((item) => {
+        item.remove()
+    })
+}
+
 function create_icon_with_tooltip(tooltip_description, icon_src) {
     let icon = document.createElement('img')
     icon.className = 'img-fluid'
@@ -9,7 +15,7 @@ function create_icon_with_tooltip(tooltip_description, icon_src) {
     icon.title = tooltip_description
     icon.src = icon_src
     icon.draggable = false
-    icon.tooltip = new bootstrap.Tooltip(icon)
+    // icon.tooltip = new bootstrap.Tooltip(icon)
     return icon
 }
 
@@ -78,10 +84,11 @@ function update_roulette(btn_roulette, json_info_list, create_icon, enabled_list
     }
     let selected_index = random_item(available_list)
     let selected_json = json_info_list[selected_index]
-    if (btn_roulette.children[0].tooltip)
-        btn_roulette.children[0].tooltip.dispose()
+    clearTooltips()
     
-    btn_roulette.appendChild(create_icon(selected_json))
+    const img = create_icon(selected_json)
+    img.classList.add('roulette-tooltip')
+    btn_roulette.appendChild(img)
     btn_roulette.children[0].remove()
 
     if (btn_roulette.previous_index !== undefined) {
@@ -151,8 +158,7 @@ function create_addons_container(target_option) {
 }
 
 function clear_addon_roulette_button(btn_addon, enabled_list, available_list, selected_list, placeholder_icon_src) {
-    if (btn_addon.children[0].tooltip)
-        btn_addon.children[0].tooltip.dispose()
+    clearTooltips()
     btn_addon.children[0].remove()
 
     if (btn_addon.previous_index !== undefined) {

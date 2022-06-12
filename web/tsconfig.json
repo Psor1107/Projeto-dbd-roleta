@@ -2,7 +2,7 @@
     "compilerOptions": {
         "outDir": "js2",
         "strictNullChecks": true,
-        "target": "ES6",
+        "target": "ES2021",
         "noEmitOnError": true,
         "removeComments": true,
         "noImplicitAny": true
