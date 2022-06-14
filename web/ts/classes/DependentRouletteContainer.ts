@@ -5,8 +5,8 @@ import IndependentRouletteContainer from "./IndependentRouletteContainer.js";
 export default class DependentRouletteContainer<T>
 implements RouletteContainer<T> {
 
-    private objects: { [key: string]: T[]}
-    private containers: { [key: string]: IndependentRouletteContainer<T>}
+    private objects: { [key: string]: T[]} = {}
+    private containers: { [key: string]: IndependentRouletteContainer<T>} = {}
     private selectedRouletteOption: string | null // Opção selecionada para a roleta (deve selecionar um aleatorio dessa opção)
     private selectedEnableOption: string | null // Opção selecionada para habilitação/desabilitação (todo objeto que for desabilitado ou habilitado deve ser nessa opção).
 

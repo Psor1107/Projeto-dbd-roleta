@@ -16,14 +16,13 @@ export default class SuperRouletteButton<T> extends RouletteButton<T> {
 
     protected update() {
         super.update()
+        for (let dependentButton of this.dependentButtons) {
+            dependentButton.clearButton()
+        }
         for (let dependentContainer of this.dependentContainers) {
             if (this.selectedObject) {
                 dependentContainer.selectRouletteOption(this.getOptionKey(this.selectedObject))
             }
-        }
-
-        for (let dependentButton of this.dependentButtons) {
-            dependentButton.clearButton()
         }
     }
 

@@ -8,13 +8,13 @@ export default class SuperRouletteButton extends RouletteButton {
     }
     update() {
         super.update();
+        for (let dependentButton of this.dependentButtons) {
+            dependentButton.clearButton();
+        }
         for (let dependentContainer of this.dependentContainers) {
             if (this.selectedObject) {
                 dependentContainer.selectRouletteOption(this.getOptionKey(this.selectedObject));
             }
-        }
-        for (let dependentButton of this.dependentButtons) {
-            dependentButton.clearButton();
         }
     }
     clearButton() {

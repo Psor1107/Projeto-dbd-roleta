@@ -1,6 +1,8 @@
 import IndependentRouletteContainer from "./IndependentRouletteContainer.js";
 export default class DependentRouletteContainer {
     constructor(objects) {
+        this.objects = {};
+        this.containers = {};
         this.objects = objects;
         this.selectedEnableOption = null;
         this.selectedRouletteOption = null;
