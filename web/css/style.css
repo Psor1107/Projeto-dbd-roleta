@@ -105,6 +105,15 @@ body {
 }
 
 
+.btn-items-addons-enabled {
+    border: solid white 2px;
+}
+
+.btn-items-addons-hover:hover {
+    border: solid red 2px;
+}
+
+
 .btns-container-light {
     border-radius: 5px;
     border: 5px solid black;

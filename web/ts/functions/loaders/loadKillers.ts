@@ -16,8 +16,8 @@ function createKillerIconWithTooltip(object: KillerInfo) {
     return createIconWithTooltip(tooltip_text, object.icon)
 } 
 
-export default async function loadKillersCharacters(dependentContainers: DependentRouletteContainer<AddOnInfo>, dependentRouletteBtns: RouletteButton<AddOnInfo>[], dependentSelectionsContainers: { [key: string]: HTMLDivElement}) {
-    await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/killers/killers.json")
+export default async function loadKillers(dependentContainer: DependentRouletteContainer<AddOnInfo>, dependentRouletteBtns: RouletteButton<AddOnInfo>[], dependentSelectionsContainers: { [key: string]: HTMLDivElement}) {
+    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/killers/killers.json")
     .then((response) => response.json())
     .then((killers: KillerInfo[]) => {
         const killerBtnClass = 'btn-character'
@@ -42,7 +42,7 @@ export default async function loadKillersCharacters(dependentContainers: Depende
             
             icon = createKillerIconWithTooltip(killer)
             const killerAddonsOptionBtn = new OptionSelectButton<AddOnInfo> (
-                dependentContainers,
+                dependentContainer,
                 killer.alias,
                 killersAddonsOptionsModal,
                 killersAddonsSelectionModal,
@@ -53,14 +53,14 @@ export default async function loadKillersCharacters(dependentContainers: Depende
         }
 
         const rouletteContainer = document.getElementById("killers-characters-roulette") as HTMLElement
-        const killer_roulette_button = new SuperRouletteButton<KillerInfo>(
+        const killerRouletteButton = new SuperRouletteButton<KillerInfo>(
             killersContainer,
             rouletteContainer,
             createKillerIconWithTooltip,
             killerBtnClass,
             killerPlaceholderSrc,
             killer => killer.alias,
-            [dependentContainers],
+            [dependentContainer],
             dependentRouletteBtns
         )
         
@@ -73,5 +73,7 @@ export default async function loadKillersCharacters(dependentContainers: Depende
         btnDeselectAllKillers.addEventListener('click', () => {
             deselectAll(killerSelectionButtons)
         })
+
+        return [killerRouletteButton]
     })
 }

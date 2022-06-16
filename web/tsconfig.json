@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "js2",
+        "outDir": "js",
         "strictNullChecks": true,
         "target": "ES2021",
         "noEmitOnError": true,

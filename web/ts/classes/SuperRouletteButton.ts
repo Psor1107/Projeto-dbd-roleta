@@ -3,11 +3,11 @@ import DependentRouletteContainer from "./DependentRouletteContainer.js"
 import RouletteButton from "./RouletteButton.js"
 
 export default class SuperRouletteButton<T> extends RouletteButton<T> {
-    private getOptionKey: (object: T) => string
+    private getOptionKey: (object: T) => string | null
     private dependentContainers: DependentRouletteContainer<any>[]
     private dependentButtons: RouletteButton<any>[]
 
-    public constructor(container: RouletteContainer<T>, HTMLParent: HTMLElement, createIconWithTooltip: (object: T) => HTMLImageElement, btnClass: string, placeHolderIconSrc: string, getOptionKey: (object: T) => string, dependentContainers: DependentRouletteContainer<any>[], dependentButtons: RouletteButton<any>[]) {
+    public constructor(container: RouletteContainer<T>, HTMLParent: HTMLElement, createIconWithTooltip: (object: T) => HTMLImageElement, btnClass: string, placeHolderIconSrc: string, getOptionKey: (object: T) => string | null, dependentContainers: DependentRouletteContainer<any>[], dependentButtons: RouletteButton<any>[]) {
         super(container, HTMLParent, createIconWithTooltip, btnClass, placeHolderIconSrc)
         this.getOptionKey = getOptionKey
         this.dependentContainers = dependentContainers

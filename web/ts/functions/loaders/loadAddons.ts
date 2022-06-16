@@ -69,7 +69,7 @@ Promise<{dependentContainer: DependentRouletteContainer<AddOnInfo>, rouletteBtns
 }
 
 
-export async function loadSurvivorsAddons():
+export async function loadItemsAddons():
 Promise<{dependentContainer: DependentRouletteContainer<AddOnInfo>, rouletteBtns: RouletteButton<AddOnInfo>[], containers: { [key: string]: HTMLDivElement}}>
 {
     return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/items_add-ons/items_add-ons.json")
@@ -77,7 +77,7 @@ Promise<{dependentContainer: DependentRouletteContainer<AddOnInfo>, rouletteBtns
     .then((addons: { [key :string]: AddOnInfo[] }) => {
         return loadAddOns(
             addons,
-            'btn-survivor-addon',
+            'btn-items-addons',
             document.getElementById("survivors-addons-roulette") as HTMLDivElement,
             "imgs/addon-background.png"
         )

@@ -1,35 +1,55 @@
-
-var survivors_roulette_buttons = []
-var killers_roulette_buttons = []
-
-document.addEventListener("DOMContentLoaded", () => {
-    const btnLoadTooltips = document.querySelector('#btn-load-tooltips')
-    load_killers_characters()
-    .then(() => {
-        load_killers_addons()
-        .then(() => {
-            btnLoadTooltips.click()
-        })
-    })
-    load_survivors_characters()
-
-    load_killers_perks()
-    load_survivors_perks()
-    load_items()
-    .then(() => {
-        load_survivors_addons()
-        .then(() => {
-            btnLoadTooltips.click()
-        })
-    })
-
-    document.getElementById('btn-roullete-all-survivors').addEventListener('click', () => {
-        for (let btn of survivors_roulette_buttons)
-            btn.click()
-    })
-
-    document.getElementById('btn-roullete-all-killers').addEventListener('click', () => {
-        for (let btn of killers_roulette_buttons)
-            btn.click()
-    })
-})
+import { loadItemsAddons, loadKillersAddons } from "./functions/loaders/loadAddons.js";
+import loadItems from "./functions/loaders/loadItems.js";
+import loadKillers from "./functions/loaders/loadKillers.js";
+import { loadKillersPerks, loadSurvivors, loadSurvivorsPerks } from "./functions/loaders/loadIndependents.js";
+import clickAll from "./functions/clickAll.js";
+document.addEventListener('DOMContentLoaded', () => {
+    const btnLoadTooltips = document.querySelector('#btn-load-tooltips');
+    const killersPerksRouletteBtns = [];
+    const survivorsPerksRouletteBtns = [];
+    const allKillerRelatedRouletteBtns = [];
+    const allSurvivorRelatedRouletteBtns = [];
+    loadKillersAddons()
+        .then((object) => {
+        allKillerRelatedRouletteBtns.push(...object.rouletteBtns);
+        loadKillers(object.dependentContainer, object.rouletteBtns, object.containers)
+            .then((rouletteBtns) => {
+            allKillerRelatedRouletteBtns.unshift(...rouletteBtns);
+            btnLoadTooltips.click();
+        });
+    });
+    loadItemsAddons()
+        .then((object) => {
+        allSurvivorRelatedRouletteBtns.push(...object.rouletteBtns);
+        loadItems(object.dependentContainer, object.rouletteBtns, object.containers)
+            .then((rouletteBtns) => {
+            allSurvivorRelatedRouletteBtns.unshift(...rouletteBtns);
+            btnLoadTooltips.click();
+        });
+    });
+    loadKillersPerks()
+        .then((rouletteBtns) => {
+        killersPerksRouletteBtns.push(...rouletteBtns);
+        allKillerRelatedRouletteBtns.push(...rouletteBtns);
+        btnLoadTooltips.click();
+    });
+    loadSurvivorsPerks()
+        .then((rouletteBtns) => {
+        survivorsPerksRouletteBtns.push(...rouletteBtns);
+        allSurvivorRelatedRouletteBtns.push(...rouletteBtns);
+        btnLoadTooltips.click();
+    });
+    loadSurvivors()
+        .then((rouletteBtns) => {
+        allSurvivorRelatedRouletteBtns.push(...rouletteBtns);
+        btnLoadTooltips.click();
+    });
+    const btnRouletteAllKillersPerks = document.getElementById('btn-roullete-killers-perks');
+    btnRouletteAllKillersPerks.addEventListener('click', () => clickAll(killersPerksRouletteBtns));
+    const btnRouletteAllSurvivorsPerks = document.getElementById('btn-roullete-survivors-perks');
+    btnRouletteAllSurvivorsPerks.addEventListener('click', () => clickAll(survivorsPerksRouletteBtns));
+    const btnRouletteAllSurvivors = document.getElementById('btn-roullete-all-survivors');
+    btnRouletteAllSurvivors.addEventListener('click', () => clickAll(allSurvivorRelatedRouletteBtns));
+    const btnRouletteAllKillers = document.getElementById('btn-roullete-all-killers');
+    btnRouletteAllKillers.addEventListener('click', () => clickAll(allKillerRelatedRouletteBtns));
+});
