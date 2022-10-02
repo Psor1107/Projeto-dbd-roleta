@@ -1,5 +1,6 @@
 from urllib.request import urlretrieve
 from time import sleep
+from operator import itemgetter
 import json
 
 
@@ -31,3 +32,15 @@ def save_json(json_path, object, print_messages=True):
     
     if print_messages:
         print("Informações salvas com sucesso.")
+
+
+def definePageRowCollumn(dictList, numberOfColumns, numberOfRows=0):
+    if numberOfRows != 0:
+        for i, currentDict in enumerate(dictList):
+            currentDict['page'] = (i // (numberOfColumns * numberOfRows)) + 1
+            currentDict['row'] = ((i // numberOfColumns) % numberOfRows) + 1
+            currentDict['column'] = (i % numberOfColumns) + 1
+    else:
+        for i, currentDict in enumerate(dictList):
+            currentDict['row'] = (i // numberOfColumns) + 1
+            currentDict['column'] = (i % numberOfColumns) + 1

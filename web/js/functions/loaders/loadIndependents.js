@@ -5,7 +5,13 @@ import createIconWithTooltip from "../createIconWithTooltip.js";
 import deselectAll from "../deselectAll.js";
 import selectAll from "../selectAll.js";
 function createPerkIcon(object) {
-    let tooltip_text = `<h2 class='h5'>${object.name}</h2>`;
+    console.log(object);
+    let tooltip_text = `
+    <h2 class='h5'>${object.name}</h2>
+    <p>Pagina: ${object.page}</p>
+    <p>Linha: ${object.row}</p>
+    <p>Coluna: ${object.column}</p>
+    `;
     return createIconWithTooltip(tooltip_text, object.icon);
 }
 function createSurvivorIcon(object) {

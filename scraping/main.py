@@ -4,7 +4,7 @@ from perks import retrieve_perks
 from links import get_links
 from killers import get_killer_info, get_killers_addons
 from survivors import get_survivor_info
-from general_functions import save_json
+from general_functions import save_json, definePageRowCollumn
 from items import get_items_info, get_items_addons
 
 project_repository = "https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main"
@@ -61,6 +61,7 @@ for link in links:
 
     print(f"Todas informações do {killer_atual['alias']} coletada com sucesso.")
 
+definePageRowCollumn(killers, 4)
 save_json("data/killers/killers.json", killers)
 save_json("data/killers_add-ons/killers_add-ons.json", killers_addons)
 
@@ -80,6 +81,7 @@ for link in links:
     survivors.append(survivor_atual)
     print(f"Todas informações do {survivor_atual['name']} coletada com sucesso.")
 
+definePageRowCollumn(survivors, 4)
 save_json("data/survivors/survivors.json", survivors)
 
 

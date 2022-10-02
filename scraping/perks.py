@@ -1,5 +1,4 @@
-from general_functions import get_image, save_json
-import json
+from general_functions import get_image, save_json, definePageRowCollumn
 from formating_functions import format_name
 
 
@@ -25,4 +24,5 @@ def retrieve_perks(table, icons_path, json_path, project_url):
         print("Icone baixado com sucesso")
         perks_list.append(perk)
     
+    definePageRowCollumn(perks_list, 5, 3)
     save_json(json_path, perks_list)

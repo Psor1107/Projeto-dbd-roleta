@@ -8,7 +8,13 @@ import deselectAll from "../deselectAll.js";
 import selectAll from "../selectAll.js";
 
 function createPerkIcon(object: PerkInfo): HTMLImageElement {
-    let tooltip_text = `<h2 class='h5'>${object.name}</h2>`
+    console.log(object)
+    let tooltip_text = `
+    <h2 class='h5'>${object.name}</h2>
+    <p>Pagina: ${object.page}</p>
+    <p>Linha: ${object.row}</p>
+    <p>Coluna: ${object.column}</p>
+    `
     return createIconWithTooltip(tooltip_text, object.icon)
 }
 
@@ -45,7 +51,6 @@ function loadIndependents<T>(perks: T[], btnClass: string, placeholderSrc: strin
             placeholderSrc
         )
         
-        // killers_roulette_buttons.push(roulette_btn)
         rouletteContainer.appendChild(rouletteButtonBox)
         rouletteBtns.push(rouletteBtn)
     }

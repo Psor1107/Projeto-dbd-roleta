@@ -5,7 +5,8 @@
         "target": "ES2021",
         "noEmitOnError": true,
         "removeComments": true,
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "moduleResolution": "node"
     },
     "include": ["ts/**/*"],
     
