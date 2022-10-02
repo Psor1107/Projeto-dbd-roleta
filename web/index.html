@@ -9,6 +9,7 @@
     <link href='css/style.css' rel='stylesheet'>
     <script src="js/index.js" type="module"></script>
     <script src="js/pages.js"></script>
+    <script src="js/rouletteKillerPlayer.js" type="module"></script>
     <script>
         // Não consegui colocar o bootstrap no typescript
         // Então, fiz o reload dos tooltips pelo javascript mesmo...
@@ -46,10 +47,13 @@
                             <a id='btn-home' class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a id='btn-survivors_roulette' class="nav-link" href="#">Survivor roulette</a>
+                            <a id='btn-survivors_roulette' class="nav-link" href="#">Roleta sobreviventes</a>
                         </li>
                         <li class="nav-item">
-                            <a id='btn-killers_roulette' class="nav-link" href="#">Killer roulette</a>
+                            <a id='btn-killers_roulette' class="nav-link" href="#">Roleta assassinos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id='btn-killer_player_roulette' class="nav-link" href="#">Roleta jogador assassino</a>
                         </li>
                     </ul>
                 </div>
@@ -209,6 +213,67 @@
                 <div class="col d-grid">
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-killers-addons-1">
                         Configurar add-ons <i class="bi bi-gear-fill"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='page' id='killer_player_roulette-page'>
+        <div class='container-lg'>
+            <h2 style="color: white; text-align: center;">
+                Roletar jogador que será assassino
+            </h2>
+            <br>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-3-lg row-col-4-xl justify-content-center">
+                <div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="player1_name" placeholder="Nome jogador 1">
+                        <label for="player1_name">Nome jogador 1</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-3-lg row-col-4-xl justify-content-center">
+                <div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="player2_name" placeholder="Nome jogador 2">
+                        <label for="player1_name">Nome jogador 2</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-3-lg row-col-4-xl justify-content-center">
+                <div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="player3_name" placeholder="Nome jogador 3">
+                        <label for="player1_name">Nome jogador 3</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-3-lg row-col-4-xl justify-content-center">
+                <div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="player4_name" placeholder="Nome jogador 4">
+                        <label for="player1_name">Nome jogador 4</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-3-lg row-col-4-xl justify-content-center">
+                <div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="player5_name" placeholder="Nome jogador 5">
+                        <label for="player1_name">Nome jogador 5</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row row-cols-1 row-cols-md-2 row-cols-3-lg row-col-4-xl justify-content-center">
+                <div class="d-grid gap-2">
+                    <button type="button" id="btn-select-player-killer" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-killer-player-roulette">
+                        Sortear
                     </button>
                 </div>
             </div>
@@ -414,6 +479,26 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-bs-target="#modal-survivors-addons-1" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal jogador assassino escolhido -->
+    <div class="modal fade" id="modal-killer-player-roulette" aria-hidden="true" aria-labelledby="label-surv-addons-2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="label-surv-addons-2">Jogador sorteado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <p class="h3" style="color: white; text-align: center;" id="selected-player-killer">
+                        
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#modal-killer-player-roulette" data-bs-toggle="modal" data-bs-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
