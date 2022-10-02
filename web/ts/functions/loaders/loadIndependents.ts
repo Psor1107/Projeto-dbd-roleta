@@ -8,7 +8,6 @@ import deselectAll from "../deselectAll.js";
 import selectAll from "../selectAll.js";
 
 function createPerkIcon(object: PerkInfo): HTMLImageElement {
-    console.log(object)
     let tooltip_text = `
     <h2 class='h5'>${object.name}</h2>
     <p>Pagina: ${object.page}</p>
@@ -19,7 +18,11 @@ function createPerkIcon(object: PerkInfo): HTMLImageElement {
 }
 
 function createSurvivorIcon(object: SurvivorInfo): HTMLImageElement {
-    let tooltip_text = `<h2 class='h5'>${object.name}</h2>`
+    let tooltip_text = `
+    <h2 class='h5'>${object.name}</h2>
+    <p>Linha: ${object.row}</p>
+    <p>Coluna: ${object.column}</p>
+    `
     return createIconWithTooltip(tooltip_text, object.icon) 
 }
 
