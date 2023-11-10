@@ -51,11 +51,12 @@ def get_items_info(items_html, icons_path, project_url):
             item['icon'] = f'{project_url}/{icons_path}/{formated_item_name}.png'
             item['type'] = item_type
             print(f"Coletando icone do item {item['name']}...")
-            get_image(item_icon_object.find('a').get('href'),
-                      f'{icons_path}/{formated_item_name}.png',
-                      'Não foi possível baixar o icone do item...')
-            print(f"Icone do item {item['name']} coletado com sucesso")
-            items.append(item)  
+            if item_icon_object.find('a') is not None:
+                get_image(item_icon_object.find('a').get('href'),
+                        f'{icons_path}/{formated_item_name}.png',
+                        'Não foi possível baixar o icone do item...')
+                print(f"Icone do item {item['name']} coletado com sucesso")
+                items.append(item)  
             row = row.findNext('tr')
     return items
         
