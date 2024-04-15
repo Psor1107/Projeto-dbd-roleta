@@ -14,7 +14,7 @@ def retrieve_perks(table, icons_path, json_path, project_url):
 
         perk['name'] = name_field.a.text
         formated_perk_name = format_name(perk['name'])
-        perk['description'] = description_field.find('div', class_='formattedPerkDesc').text
+        perk['description'] = description_field.find('div', class_='formattedPerkDesc')
         perk['character'] = character_field.text.strip().replace('.All', 'General')
         perk['icon'] = f"{project_url}/{icons_path}/{formated_perk_name}.png"
         print(f"Baixando o icone do perk: {perk['name']}")

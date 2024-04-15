@@ -4,7 +4,7 @@ from operator import itemgetter
 import json
 
 
-def get_image(image_url, image_save_path, error_message='', infinite_try=True):
+def get_image(image_url, image_save_path, error_message='', infinite_try=False):
     if infinite_try:
         while True:
             try:

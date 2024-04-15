@@ -1,5 +1,5 @@
 from urllib.request import urlopen
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup # type: ignore
 from killers import get_killer_info
 
 # retorna uma lista de links para paginas de survivors ou killers

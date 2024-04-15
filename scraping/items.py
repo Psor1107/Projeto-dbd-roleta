@@ -6,7 +6,7 @@ def get_items_addons(addons_html, icons_path, project_url):
     items_addons = {}
     items_names = ['Flashlight', 'Key', 'Map', 'Med-Kit', 'Toolbox']
     for item_name in items_names:
-        item_addons_table = addons_html.find('span', id=item_name).findNext('table', class_='wikitable')
+        item_addons_table = addons_html.find('span', id=item_name)
         item_addons = []
         for table_row in item_addons_table.findAll('tr')[1:]:
             item_addon = {}
