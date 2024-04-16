@@ -33,14 +33,14 @@ function loadAddOns(addons, addonsBtnClass, rouletteParent, imgPlaceholderSrc) {
     };
 }
 export async function loadKillersAddons() {
-    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/killers_add-ons/killers_add-ons.json")
+    return await fetch("https://raw.githubusercontent.com/Psor1107/Projeto-dbd-roleta/main//data/killers_add-ons/killers_add-ons.json")
         .then((response) => response.json())
         .then((addons) => {
         return loadAddOns(addons, 'btn-killer-addon', document.getElementById("killers-addons-roulette"), "imgs/addon-background.png");
     });
 }
 export async function loadItemsAddons() {
-    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/items_add-ons/items_add-ons.json")
+    return await fetch("https://raw.githubusercontent.com/Psor1107/Projeto-dbd-roleta/main//data/items_add-ons/items_add-ons.json")
         .then((response) => response.json())
         .then((addons) => {
         return loadAddOns(addons, 'btn-items-addons', document.getElementById("survivors-addons-roulette"), "imgs/addon-background.png");

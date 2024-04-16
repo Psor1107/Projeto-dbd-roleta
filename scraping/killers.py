@@ -1,11 +1,13 @@
 from general_functions import get_image
 from formating_functions import format_name
 from surv_and_killers import get_overview
+from unidecode import unidecode
+
 
 def get_killer_info(killer_html, icons_path, project_url):
     killer = {}
     killer_table = killer_html.find("table", class_="infoboxtable").find('tbody')
-    killer['alias'] = killer_table.find("tr", class_="infoboxTitle").find("th").text.strip()
+    killer['alias'] = unidecode(killer_table.find("tr", class_="infoboxTitle").find("th").text.strip())
     formated_killer_alias = format_name(killer['alias'])
     print(f"Coletando icone do killer {killer['alias']}...")
     get_image(killer_table.find('a', class_='image').get("href"),
@@ -33,29 +35,41 @@ def get_killer_info(killer_html, icons_path, project_url):
     killer['overview'] = get_overview(killer_html)
     return killer
 
-def get_killers_addons(killer_html, icons_path, project_url):
-    addons = []
-    addons_table = get_addons_table(killer_html)
-    for table_row in addons_table.findAll("tr")[1:]:
-        addon = {}
-        row_headers = table_row.findAll('th')
-        icon_field = row_headers[0]
-        name_field = row_headers[1]
+import json
+import re
+def get_killers_addons(addons_html, icons_path, project_url):
+    killers_addons = {}
+    killers_names = []
+    killers = json.load(open('data/killers/killers.json', 'r'))
+    for killer in killers:
+        killers_names.append(killer['alias'][5:])
+    print(killers_names)
+        
+    for killer_name in killers_names:
+        killer_addons_table = addons_html.find('a', title=re.compile(killer_name)).findNext('table', class_='wikitable')
+        killer_addons = []
+        count = 0
+        for table_row in killer_addons_table.findAll('tr'):
+            count += 1
+            if count < 2:
+                continue
+            killer_addon = {}
+            headers = table_row.findAll('th')
+            killer_addon_icon_object = headers[0]
+            killer_addon_name_object = headers[1]
+            killer_addon_description_object = table_row.find('td')
 
-        addon['name'] = name_field.a.text
-        addon['description'] = table_row.find('td').text
-        formated_addon_name = format_name(addon['name'])
-        addon['icon'] = f"{project_url}/{icons_path}/{formated_addon_name}.png"
-        print(f"Coletando icone do add-on {addon['name']}...")
-        get_image(icon_field.find('a').get('href'),
-                 f'{icons_path}/{formated_addon_name}.png',
-                 "Erro ao baixar icone do addon...")
-        print(f"Icone do add-on {addon['name']} coletado com sucesso")
-        addons.append(addon)
-    return addons
+            killer_addon['name'] = killer_addon_name_object.text.strip()
+            formated_killer_addon_name = format_name(killer_addon['name'])
+            killer_addon['description'] = killer_addon_description_object.text
+            killer_addon['icon'] = f'{project_url}/{icons_path}/{formated_killer_addon_name}.png'
+            
+            print(f"Coletando o icone do addon {killer_addon['name']}...")
+            get_image(killer_addon_icon_object.find('img').get('data-src'),
+                      f'{icons_path}/{formated_killer_addon_name}.png',
+                      'Erro ao coletar icone de addon de killer...')
+            print(f"Icone do addon {killer_addon['name']} coletado com sucesso")
+            killer_addons.append(killer_addon)
+        killers_addons[killer_name] = killer_addons
+    return killers_addons
 
-
-def get_addons_table(killer_html):
-    for title in killer_html.findAll("span", class_='mw-headline'):
-        if "Add-ons" in title.text:
-            return title.findNext("table")

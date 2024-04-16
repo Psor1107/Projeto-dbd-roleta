@@ -70,7 +70,7 @@ function loadIndependents<T>(perks: T[], btnClass: string, placeholderSrc: strin
 }
 
 export async function loadKillersPerks(): Promise<RouletteButton<PerkInfo>[]> {
-    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/perks/killer_perks.json")
+    return await fetch("https://raw.githubusercontent.com/Psor1107/Projeto-dbd-roleta/main//data/perks/killer_perks.json")
     .then((response) => response.json())
     .then((killersPerks: PerkInfo[]) => {
         return loadIndependents(
@@ -88,7 +88,7 @@ export async function loadKillersPerks(): Promise<RouletteButton<PerkInfo>[]> {
 }
 
 export async function loadSurvivorsPerks(): Promise<RouletteButton<PerkInfo>[]> {
-    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/perks/survivor_perks.json")
+    return await fetch("https://raw.githubusercontent.com/Psor1107/Projeto-dbd-roleta/main//data/perks/survivor_perks.json")
     .then((response) => response.json())
     .then((survivorsPerks: PerkInfo[]) => {
         return loadIndependents<PerkInfo>(
@@ -106,7 +106,7 @@ export async function loadSurvivorsPerks(): Promise<RouletteButton<PerkInfo>[]> 
 }
 
 export async function loadSurvivors(): Promise<RouletteButton<SurvivorInfo>[]> {
-    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/survivors/survivors.json")
+    return await fetch("https://raw.githubusercontent.com/Psor1107/Projeto-dbd-roleta/main//data/survivors/survivors.json")
     .then((response) => response.json())
     .then((survivors: SurvivorInfo[]) => {
         return loadIndependents<SurvivorInfo>(

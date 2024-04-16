@@ -4,11 +4,15 @@ from general_functions import get_image
 
 def get_items_addons(addons_html, icons_path, project_url):
     items_addons = {}
-    items_names = ['Flashlight', 'Key', 'Map', 'Med-Kit', 'Toolbox']
+    items_names = ['Firecrackers', 'Flashlights', 'Keys', 'Maps', 'Med-Kits', 'Toolboxes']
     for item_name in items_names:
-        item_addons_table = addons_html.find('span', id=item_name)
+        item_addons_table = addons_html.find('span', id=item_name).findNext('table', class_='wikitable')
         item_addons = []
-        for table_row in item_addons_table.findAll('tr')[1:]:
+        count = 0
+        for table_row in item_addons_table.findAll('tr'):
+            count += 1
+            if count < 2:
+                continue
             item_addon = {}
             headers = table_row.findAll('th')
             item_addon_icon_object = headers[0]
@@ -19,8 +23,9 @@ def get_items_addons(addons_html, icons_path, project_url):
             formated_item_addon_name = format_name(item_addon['name'])
             item_addon['description'] = item_addon_description_object.text
             item_addon['icon'] = f'{project_url}/{icons_path}/{formated_item_addon_name}.png'
+            
             print(f"Coletando o icone do addon {item_addon['name']}...")
-            get_image(item_addon_icon_object.find('a').get('href'),
+            get_image(item_addon_icon_object.find('img').get('data-src'),
                       f'{icons_path}/{formated_item_addon_name}.png',
                       'Erro ao coletar icone de addon de item...')
             print(f"Icone do addon {item_addon['name']} coletado com sucesso")
@@ -50,13 +55,14 @@ def get_items_info(items_html, icons_path, project_url):
             item['description'] = item_description_object.text
             item['icon'] = f'{project_url}/{icons_path}/{formated_item_name}.png'
             item['type'] = item_type
+            
             print(f"Coletando icone do item {item['name']}...")
             if item_icon_object.find('a') is not None:
-                get_image(item_icon_object.find('a').get('href'),
-                        f'{icons_path}/{formated_item_name}.png',
+                get_image(item_icon_object.find('img').get('data-src'),
+                        f'{icons_path}/IconItems_{formated_item_name}.png',
                         'Não foi possível baixar o icone do item...')
                 print(f"Icone do item {item['name']} coletado com sucesso")
                 items.append(item)  
             row = row.findNext('tr')
     return items
-        
+

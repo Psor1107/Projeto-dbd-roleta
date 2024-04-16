@@ -19,7 +19,7 @@ def retrieve_perks(table, icons_path, json_path, project_url):
         perk['icon'] = f"{project_url}/{icons_path}/{formated_perk_name}.png"
         print(f"Baixando o icone do perk: {perk['name']}")
         get_image(icon_field.find('a').get('href'),
-                  f'{icons_path}/{formated_perk_name}.png',
+                  f'{icons_path}/IconPerks_{formated_perk_name}.png',
                   "Erro ao baixar o icone, tentando novamente...")
         print("Icone baixado com sucesso")
         perks_list.append(perk)

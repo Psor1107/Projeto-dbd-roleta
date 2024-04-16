@@ -1,10 +1,10 @@
-from urllib.request import urlretrieve
 from time import sleep
+from urllib.request import urlretrieve
 from operator import itemgetter
 import json
 
 
-def get_image(image_url, image_save_path, error_message='', infinite_try=False):
+def get_image(image_url, image_save_path, error_message='', infinite_try=True):
     if infinite_try:
         while True:
             try:
@@ -14,7 +14,7 @@ def get_image(image_url, image_save_path, error_message='', infinite_try=False):
                 print(e)
                 if error_message:
                     print(error_message)
-                sleep(0.5)
+                    sleep(1)
     else:
         try:
             urlretrieve(image_url, image_save_path)

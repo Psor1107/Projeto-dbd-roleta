@@ -21,7 +21,7 @@ function createKillerIconWithTooltip(object: KillerInfo) {
 } 
 
 export default async function loadKillers(dependentContainer: DependentRouletteContainer<AddOnInfo>, dependentRouletteBtns: RouletteButton<AddOnInfo>[], dependentSelectionsContainers: { [key: string]: HTMLDivElement}) {
-    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/killers/killers.json")
+    return await fetch("https://raw.githubusercontent.com/Psor1107/Projeto-dbd-roleta/main//data/killers/killers.json")
     .then((response) => response.json())
     .then((killers: KillerInfo[]) => {
         const killerBtnClass = 'btn-character'

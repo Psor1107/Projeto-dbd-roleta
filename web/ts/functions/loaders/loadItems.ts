@@ -17,7 +17,7 @@ function createItemIconWithTooltip(object: ItemInfo) {
 } 
 
 export default async function loadItems(dependentContainer: DependentRouletteContainer<AddOnInfo>, dependentRouletteBtns: RouletteButton<AddOnInfo>[], dependentSelectionsContainers: { [key: string]: HTMLDivElement}) {
-    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/items/items.json")
+    return await fetch("https://raw.githubusercontent.com/Psor1107/Projeto-dbd-roleta/main//data/items/items.json")
     .then((response) => response.json())
     .then((items: ItemInfo[]) => {
         const itemBtnClass = "btn-items"

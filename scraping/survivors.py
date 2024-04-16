@@ -8,6 +8,10 @@ def get_survivor_info(survivor_html, icons_path, project_url):
     survivor_table = survivor_html.find("table", class_="infoboxtable").find('tbody')
     survivor['name'] = survivor_table.find("tr", class_="infoboxTitle").find("th").text.strip()
     formated_survivor_name = format_name(survivor['name'])
+    
+    print(survivor_table.find('a').get('href'))
+    print(survivor_table.find('a', class_='image').get("href"))
+    
     print(f"Coletando icone do survivor {survivor['name']}...")
     get_image(survivor_table.find('a', class_='image').get("href"),
               f'{icons_path}/{formated_survivor_name}.png',

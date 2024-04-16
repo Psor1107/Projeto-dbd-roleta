@@ -56,7 +56,7 @@ function loadAddOns (addons: { [key :string]: AddOnInfo[] }, addonsBtnClass: str
 export async function loadKillersAddons():
 Promise<{dependentContainer: DependentRouletteContainer<AddOnInfo>, rouletteBtns: RouletteButton<AddOnInfo>[], containers: { [key: string]: HTMLDivElement}}>
 {
-    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/killers_add-ons/killers_add-ons.json")
+    return await fetch("https://raw.githubusercontent.com/Psor1107/Projeto-dbd-roleta/main//data/killers_add-ons/killers_add-ons.json")
     .then((response) => response.json())
     .then((addons: { [key :string]: AddOnInfo[] }) => {
         return loadAddOns(
@@ -72,7 +72,7 @@ Promise<{dependentContainer: DependentRouletteContainer<AddOnInfo>, rouletteBtns
 export async function loadItemsAddons():
 Promise<{dependentContainer: DependentRouletteContainer<AddOnInfo>, rouletteBtns: RouletteButton<AddOnInfo>[], containers: { [key: string]: HTMLDivElement}}>
 {
-    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/items_add-ons/items_add-ons.json")
+    return await fetch("https://raw.githubusercontent.com/Psor1107/Projeto-dbd-roleta/main//data/items_add-ons/items_add-ons.json")
     .then((response) => response.json())
     .then((addons: { [key :string]: AddOnInfo[] }) => {
         return loadAddOns(

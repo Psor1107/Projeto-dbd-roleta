@@ -14,7 +14,7 @@ function createKillerIconWithTooltip(object) {
     return createIconWithTooltip(tooltip_text, object.icon);
 }
 export default async function loadKillers(dependentContainer, dependentRouletteBtns, dependentSelectionsContainers) {
-    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/killers/killers.json")
+    return await fetch("https://raw.githubusercontent.com/Psor1107/Projeto-dbd-roleta/main//data/killers/killers.json")
         .then((response) => response.json())
         .then((killers) => {
         const killerBtnClass = 'btn-character';

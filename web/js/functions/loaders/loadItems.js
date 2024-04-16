@@ -10,7 +10,7 @@ function createItemIconWithTooltip(object) {
     return createIconWithTooltip(tooltip_text, object.icon);
 }
 export default async function loadItems(dependentContainer, dependentRouletteBtns, dependentSelectionsContainers) {
-    return await fetch("https://raw.githubusercontent.com/GregorioFornetti/Projeto-dbd-roleta/main/data/items/items.json")
+    return await fetch("https://raw.githubusercontent.com/Psor1107/Projeto-dbd-roleta/main//data/items/items.json")
         .then((response) => response.json())
         .then((items) => {
         const itemBtnClass = "btn-items";
